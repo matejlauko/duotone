@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext", "dom", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "forceConsistentCasingInFileNames": true,
+    "inlineSources": false,
+    "preserveWatchOutput": true,
+    "skipLibCheck": false,
+    "strict": true,
+    "allowJs": true,
+    "checkJs": false,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "noEmit": true,
+    "isolatedModules": true
+  },
+  "exclude": ["node_modules", "**/node_modules", "**/__tests__", "**/*.spec.ts", "**/*.test.ts"]
+}

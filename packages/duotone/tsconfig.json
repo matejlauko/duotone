@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "checkJs": true,
+    "types": ["vite/client"],
+    "paths": {
+      "virtual:__DUOTONE_GENERATED__": ["./shared/generated.d.ts"]
+    }
+  },
+  "include": ["app/**/*.ts", "app/**/*.tsx", "cli/**/*.js", "shared"]
+}
