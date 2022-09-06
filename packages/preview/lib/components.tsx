@@ -10,21 +10,25 @@ type Props = {
 
 const PreviewComponents = React.memo<Props>(function PreviewComponents({ components }) {
   const scrollToItemByHash = React.useCallback((hash: string) => {
-    // TODO: hash can be a thene conf
-    const splitHash = hash.split('#')
+    const hashState = Object.fromEntries(
+      decodeURIComponent(hash)
+        .replace(/^#/, '')
+        .split('&')
+        .map((part) => part.split('='))
+    )
+    const { component, variant } = hashState
 
-    const componentName = decodeURIComponent(splitHash[1])
-    const variantName = splitHash[2] ? decodeURIComponent(splitHash[2]) : undefined
+    if (!component) return
 
-    const componentEl = document.querySelector(`[data-component="${componentName}"]`)
+    const componentEl = document.querySelector(`[data-component="${component}"]`)
 
     if (!componentEl) return
 
     let offset = 0
     let targetEl: Element | null = componentEl
 
-    if (variantName) {
-      targetEl = componentEl.querySelector(`[data-variant="${variantName}"]`)
+    if (variant) {
+      targetEl = componentEl.querySelector(`[data-variant="${variant}"]`)
       offset = parseInt(theme.component.heading_height.value, 10)
     }
 

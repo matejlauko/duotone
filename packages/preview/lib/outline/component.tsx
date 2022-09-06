@@ -10,7 +10,7 @@ type Props = {
 }
 
 const OutlineComponent: React.FC<Props> = ({ component, onSelect }) => {
-  const componentHash = `#${encodeURIComponent(component.name)}`
+  const componentHash = `#component=${encodeURIComponent(component.name)}`
 
   const handleComponentClick = () => {
     location.hash = componentHash
