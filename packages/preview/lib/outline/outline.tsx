@@ -1,7 +1,7 @@
 import * as React from 'react'
 import OutlineComponent from './component'
 import { Component } from '../types'
-import { layoutCss, styled } from '../styles'
+import { styled } from '../styles'
 import { Accordion, AccordionItem } from './accordion'
 
 type Props = {
@@ -38,7 +38,8 @@ const Outline: React.FC<Props> = ({ components }) => {
 
 export default Outline
 
-export const UINav = styled('nav', layoutCss, {
+export const UINav = styled('nav', {
+  boxSizing: 'border-box',
   position: 'sticky',
   top: 0,
   padding: '16px 0',

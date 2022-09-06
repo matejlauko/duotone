@@ -1,7 +1,7 @@
 import * as React from 'react'
 import PreviewComponent from './component'
 import { useHashChange } from './hooks'
-import { layoutCss, styled, theme } from './styles'
+import { styled, theme } from './styles'
 import { Component } from './types'
 
 type Props = {
@@ -10,6 +10,7 @@ type Props = {
 
 const PreviewComponents = React.memo<Props>(function PreviewComponents({ components }) {
   const scrollToItemByHash = React.useCallback((hash: string) => {
+    // TODO: hash can be a thene conf
     const splitHash = hash.split('#')
 
     const componentName = decodeURIComponent(splitHash[1])
@@ -50,13 +51,15 @@ const PreviewComponents = React.memo<Props>(function PreviewComponents({ compone
 
 export default PreviewComponents
 
-const UIContainer = styled('div', layoutCss, {
+const UIContainer = styled('div', {
+  boxSizing: 'border-box',
   paddingTop: '8px',
   paddingBottom: '32px',
   minHeight: '100%',
 })
 
-const UIComponents = styled('div', layoutCss, {
+const UIComponents = styled('div', {
+  boxSizing: 'border-box',
   display: 'grid',
   rowGap: '$component$gap',
 })

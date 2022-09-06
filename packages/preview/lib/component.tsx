@@ -1,6 +1,6 @@
 import * as React from 'react'
 import PreviewOption from './option'
-import { layoutCss, styled, textBaseCss } from './styles'
+import { styled } from './styles'
 import { Component, Variant } from './types'
 
 type Props = {
@@ -15,6 +15,7 @@ const PreviewComponent: React.FC<Props> = ({ component }) => {
       <UIHeaderWrap ref={headerWrapRef}>
         <UIComponentHeading>{component.name}</UIComponentHeading>
       </UIHeaderWrap>
+      <UIHeaderShadow />
 
       <UIVariants>
         {component.render && (
@@ -54,12 +55,12 @@ const PreviewVariant: React.FC<{
 
 const UIComponentContainer = styled('div', {})
 
-const UIHeaderWrap = styled('div', layoutCss, {
+const UIHeaderWrap = styled('div', {
+  boxSizing: 'border-box',
   background: '$component$heading_background',
   position: 'sticky',
   top: 0,
   zIndex: 1,
-  marginBottom: '$component$heading_marginBottom',
   display: 'flex',
   alignItems: 'center',
   height: '$component$heading_height',
@@ -67,27 +68,49 @@ const UIHeaderWrap = styled('div', layoutCss, {
   paddingRight: '24px',
 })
 
-const UIComponentHeading = styled('h2', textBaseCss, {
-  fontSize: '$component$heading_fontSize',
-  fontWeight: '$component$heading_fontWeight',
-  color: '$component$heading_color',
+const UIHeaderShadow = styled('div', {
+  position: 'sticky',
+  top: '10px',
+  height: 'calc($component$heading_height - 10px)',
+  marginTop: 'calc($component$heading_height * -1)',
+  boxShadow: '0 5px 10px -5px $component$heading_shadow',
 })
 
-const UIVariants = styled('div', layoutCss, {
+const UIComponentHeading = styled('h2', {
+  all: 'unset',
+  display: 'block',
+  color: '$root$color',
+  fontFamily: '$root$fontFamily',
+  lineHeight: '$root$lineHeight',
+  margin: 0,
+  textRendering: 'optimizeLegibility',
+  fontSize: '$component$heading_fontSize',
+  fontWeight: '$component$heading_fontWeight',
+})
+
+const UIVariants = styled('div', {
+  boxSizing: 'border-box',
   display: 'grid',
   rowGap: '$variant$gap',
   paddingLeft: '24px',
   paddingRight: '24px',
+  paddingTop: '16px',
 })
 
-const UIVariantHeading = styled('h3', textBaseCss, {
+const UIVariantHeading = styled('h3', {
+  all: 'unset',
+  display: 'block',
+  fontFamily: '$root$fontFamily',
+  lineHeight: '$root$lineHeight',
+  margin: 0,
   fontSize: '$variant$heading_fontSize',
   fontWeight: '$variant$heading_fontWeight',
   color: '$variant$heading_color',
-  marginBottom: '$variant$heading_marginBottom',
+  marginBottom: '8px',
 })
 
-const UIPanel = styled('div', layoutCss, {
+const UIPanel = styled('div', {
+  boxSizing: 'border-box',
   background: '$variant$background',
   border: '$variant$border',
   borderRadius: '$variant$borderRadius',

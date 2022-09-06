@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { buttonBaseCss, layoutCss, linkBaseCss, styled, textBaseCss } from '../styles'
+import { styled } from '../styles'
 import { Component } from '../types'
 import { AccordionChevron, AccordionContent, AccordionHeader, AccordionTrigger } from './accordion'
 import VariantItem from './variant'
@@ -55,7 +55,8 @@ const OutlineComponent: React.FC<Props> = ({ component, onSelect }) => {
 
 export default OutlineComponent
 
-export const UIItem = styled('div', layoutCss, {
+export const UIItem = styled('div', {
+  boxSizing: 'border-box',
   height: '34px',
   display: 'flex',
   justifyContent: 'space-between',
@@ -67,17 +68,26 @@ export const UIItem = styled('div', layoutCss, {
 
   '&:hover': {
     background: '$outline$button_hover_background',
-    color: '$outline$button_hover_color',
   },
   '&:active': {
     background: '$outline$button_active_background',
-    color: '$outline$button_active_color',
   },
 })
 
-const UIComponentLink = styled('a', linkBaseCss)
+const UIComponentLink = styled('a', {
+  all: 'unset',
+  color: 'inherit',
 
-const UIComponentName = styled(AccordionHeader, textBaseCss, {
+  '&:hover, &:focus-visible': {
+    color: '$outline$button_hover_color',
+  },
+})
+
+const UIComponentName = styled(AccordionHeader, {
+  all: 'unset',
+  display: 'block',
+  fontFamily: '$root$fontFamily',
+  lineHeight: '$root$lineHeight',
   fontSize: '$outline$component_fontSize',
   color: 'inherit',
   fontWeight: 'inherit',
@@ -88,23 +98,36 @@ const UIComponent = styled(UIItem, {
   alignItems: 'center',
 })
 
-const UIExpandButton = styled('button', buttonBaseCss, {
+const UIExpandButton = styled('button', {
+  all: 'unset',
+  userSelect: 'none',
+  lineHeight: '1',
+  cursor: 'pointer',
+  WebkitTapHighlightColor: 'transparent',
+  fontFamily: 'inherit',
+  position: 'relative',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   width: '28px',
   height: '28px',
   background: '$outline$expand_background',
   color: '$outline$expand_color',
   borderRadius: '$outline$expand_borderRadius',
-  fontWeight: '$outline$expand_fontWeight',
 
   '&:hover, &:focus-visible': {
-    background: '$outline$button_hover_background',
-    color: '$outline$button_hover_color',
+    background: '$outline$expand_hover_background',
+    color: '$outline$expand_hover_color',
   },
   '&:active': {
-    background: '$outline$button_active_background',
-    color: '$outline$button_active_color',
+    background: '$outline$expand_active_background',
+    color: '$outline$expand_active_color',
   },
   '&[data-state="open"]:not(:hover)': {
     background: 'transparent',
+  },
+  '&:focus': {
+    border: 'none',
+    outline: 'none',
   },
 })

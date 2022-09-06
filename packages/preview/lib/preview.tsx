@@ -2,14 +2,7 @@ import * as React from 'react'
 import PreviewComponents from './components'
 import { generateComponentsListFromConfig } from './generate-components'
 import Outline from './outline/outline'
-import {
-  createTheme,
-  generateThemeFromPreviewStyles,
-  layoutCss,
-  prepareSharedStyles,
-  styled,
-  textBaseCss,
-} from './styles'
+import { createTheme, generateThemeFromPreviewStyles, styled } from './styles'
 import { ComponentsConfig, StylesConfig } from './types'
 
 type Props = {
@@ -17,8 +10,6 @@ type Props = {
   kitName?: string
   previewStyles?: StylesConfig
 }
-
-prepareSharedStyles()
 
 const Preview: React.FC<Props> = ({ kitName, components, previewStyles }) => {
   const componentsList = generateComponentsListFromConfig(components)
@@ -47,13 +38,15 @@ const Preview: React.FC<Props> = ({ kitName, components, previewStyles }) => {
 
 export default Preview
 
-const UIPreview = styled('section', layoutCss, {
+const UIPreview = styled('section', {
+  boxSizing: 'border-box',
   minHeight: '100%',
   display: 'flex',
   background: '$root$background',
 })
 
-const UISidebar = styled('aside', layoutCss, {
+const UISidebar = styled('aside', {
+  boxSizing: 'border-box',
   position: 'relative',
   flexDirection: 'column',
   width: '$outline$width',
@@ -63,16 +56,21 @@ const UISidebar = styled('aside', layoutCss, {
   background: '$outline$background',
 })
 
-const UIKitName = styled('h1', textBaseCss, {
+const UIKitName = styled('h1', {
+  all: 'unset',
   display: 'block',
+  fontFamily: '$root$fontFamily',
+  lineHeight: '$root$lineHeight',
+  textRendering: 'optimizeLegibility',
   fontSize: '$outline$kitName_fontSize',
   fontWeight: '$outline$kitName_fontWeight',
   color: '$outline$kitName_color',
   padding: '0 16px',
-  marginTop: '16px',
+  margin: '16px 0 0 0',
 })
 
-const UIComponents = styled('div', layoutCss, {
+const UIComponents = styled('div', {
+  boxSizing: 'border-box',
   position: 'relative',
   flexGrow: 1,
 })

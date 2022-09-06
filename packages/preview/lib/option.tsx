@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { styled, textBaseCss } from './styles'
+import { styled } from './styles'
 import { Component, Variant, VariantOption } from './types'
 
 type Props = {
@@ -34,9 +34,14 @@ const PreviewOption: React.FC<Props> = ({ component, variant, option }) => {
 
 export default PreviewOption
 
-const UIOptionHeading = styled('h4', textBaseCss, {
+const UIOptionHeading = styled('h4', {
+  all: 'unset',
+  display: 'block',
+  fontFamily: '$root$fontFamily',
+  lineHeight: '$root$lineHeight',
+  margin: 0,
   fontSize: '$variant$option_fontSize',
   fontWeight: '$variant$option_fontWeight',
   color: '$variant$option_color',
-  marginBottom: '$variant$option_marginBottom',
+  marginBottom: '4px',
 })
