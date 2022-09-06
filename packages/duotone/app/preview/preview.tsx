@@ -44,7 +44,7 @@ const PreviewApp = () => {
       const createdTheme = CREATE_THEME(parsedTokens, theme)
 
       if (previousThemeClass.current) {
-        document.documentElement.classList.remove(previousThemeClass.current)
+        document.body.classList.remove(previousThemeClass.current)
       }
 
       if (!createdTheme) return
@@ -57,7 +57,7 @@ const PreviewApp = () => {
           : null
 
       if (themeClass) {
-        document.documentElement.classList.add(themeClass)
+        document.body.classList.add(themeClass)
 
         previousThemeClass.current = themeClass
       }
