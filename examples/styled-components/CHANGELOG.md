@@ -1,5 +1,15 @@
 # example-styled-components
 
+## 0.0.3
+
+### Patch Changes
+
+- - redo preview styling
+  - fix preview examples deploy
+  - fix preview bugs
+- Updated dependencies
+  - @duotone/react@0.0.3
+
 ## 0.0.1
 
 ### Patch Changes

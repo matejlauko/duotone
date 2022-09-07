@@ -1,6 +1,6 @@
 {
   "name": "@duotone/preview",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "author": "Matej Lauko <matej@lauko.io>",
   "description": "Generate preview of UI components",
