@@ -24,12 +24,12 @@ const PreviewComponents = React.memo<Props>(function PreviewComponents({ compone
 
     if (!componentEl) return
 
-    let offset = 0
+    let offset = 8
     let targetEl: Element | null = componentEl
 
     if (variant) {
       targetEl = componentEl.querySelector(`[data-variant="${variant}"]`)
-      offset = parseInt(theme.component.heading_height.value, 10)
+      offset += parseInt(theme.component.heading_height.value, 10)
     }
 
     if (targetEl) {

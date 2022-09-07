@@ -54,7 +54,10 @@ export const generateThemeFromPreviewStyles = (previewStylesConfig?: StylesConfi
       borderRadius: '6px',
 
       option_fontSize: `${previewFontSizeVal * 0.95}${previewFontSizeUnit}`,
-      option_color: styles.renderPanel.fontColor ?? styles.fontColor,
+      option_color:
+        previewStylesConfig?.renderPanel?.fontColor ??
+        previewStylesConfig?.fontColor ??
+        styles.renderPanel.fontColor,
       option_fontWeight: 400,
     },
 

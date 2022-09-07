@@ -40,8 +40,8 @@ const UIOptionHeading = styled('h4', {
   fontFamily: '$root$fontFamily',
   lineHeight: '$root$lineHeight',
   margin: 0,
-  fontSize: '$variant$option_fontSize',
-  fontWeight: '$variant$option_fontWeight',
-  color: '$variant$option_color',
+  fontSize: '$renderPanel$option_fontSize',
+  fontWeight: '$renderPanel$option_fontWeight',
+  color: '$renderPanel$option_color',
   marginBottom: '4px',
 })

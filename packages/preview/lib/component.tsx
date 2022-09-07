@@ -111,9 +111,9 @@ const UIVariantHeading = styled('h3', {
 
 const UIPanel = styled('div', {
   boxSizing: 'border-box',
-  background: '$variant$background',
-  border: '$variant$border',
-  borderRadius: '$variant$borderRadius',
+  background: '$renderPanel$background',
+  border: '$renderPanel$border',
+  borderRadius: '$renderPanel$borderRadius',
   padding: '16px',
   display: 'flex',
   flexWrap: 'wrap',
