@@ -34,7 +34,6 @@ program
   .option('--viteConfig [string]', 'file with Vite configuration')
   .action(async (params) => {
     const success = await build({ ...params, build: params })
-    console.log({ params })
 
     if (success) {
       process.exit(0)

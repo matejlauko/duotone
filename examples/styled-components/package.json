@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "duotone serve",
-    "build": "duotone build --base=/examples/styled-components"
+    "build": "duotone build --base=/examples/styled-components/"
   },
   "dependencies": {
     "@duotone/react": "workspace:*",

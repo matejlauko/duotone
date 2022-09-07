@@ -12,12 +12,15 @@ const PreviewFrame: React.FC = () => {
   const setPreviewFrameElement = useSetAtom(previewFrameElementAtom)
 
   const customThemeConf = encodeURIComponent(JSON.stringify(changedTokens))
+  const frameUrl = `${
+    import.meta.env.BASE_URL
+  }preview/index.html#theme=${currentThemeName}&tokens=${customThemeConf}`
 
   return (
     <UIFrame
       id="preview-frame"
       ref={(el: HTMLIFrameElement) => setPreviewFrameElement(el)}
-      src={`/preview/index.html#theme=${currentThemeName}&tokens=${customThemeConf}`}
+      src={frameUrl}
       sandbox="allow-same-origin allow-scripts"
     />
   )
