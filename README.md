@@ -1,5 +1,5 @@
 <div align="center">
-<h1>duotone</h1>
+<img width="256px" src="https://duotone.lauko.io/assets/logo.svg" alt="duotone logo" />
 <br/>
 
 <hr/>
@@ -8,7 +8,11 @@
 
 <br/>
 
-### UI theme editor for React component libraries
+<h1>duotone</h1>
+
+![npm package version](https://img.shields.io/npm/v/@duotone/react)
+
+### Visual theme editor with live component preview
 
 Craft perfect themes that fit your brand.<br/>
 Design and prototype quicker by getting an overview of all the UI components you use.<br/>
@@ -18,12 +22,12 @@ Design and prototype quicker by getting an overview of all the UI components you
 #### With duotone you can:
 
 - Preview how all the components and their variants look side-by-side on one organized page
-- Edit theme tokens and see changes live
+- Edit design tokens and see changes live
   <br/>
 
 ---
 
-#### Table of contents
+#### Contents
 
 - [Get started](#get-started)
   - [Install](#install)
