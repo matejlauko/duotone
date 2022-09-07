@@ -16,12 +16,12 @@ const PreviewOption: React.FC<Props> = ({ component, variant, option }) => {
   return (
     <>
       {option !== undefined && (
-        <UIOptionHeading>
+        <UIOptionHeading className="dtp-option-heading">
           {typeof option === 'object' ? option.name : String(option)}
         </UIOptionHeading>
       )}
 
-      <div ref={optionElRef}>
+      <div ref={optionElRef} className="dtp-option-render">
         {variant
           ? typeof option === 'object'
             ? option.render()

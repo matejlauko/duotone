@@ -16,7 +16,7 @@ const Outline: React.FC<Props> = ({ components }) => {
   }
 
   return (
-    <UINav>
+    <UINav className="dtp-outline">
       <Accordion
         type="multiple"
         value={openComponents}
@@ -24,7 +24,7 @@ const Outline: React.FC<Props> = ({ components }) => {
         role="list"
       >
         {components.map((component) => (
-          <AccordionItem key={component.name} value={component.name}>
+          <AccordionItem key={component.name} value={component.name} role="listitem">
             <OutlineComponent
               component={component}
               onSelect={() => handleSelectComponent(component.name)}

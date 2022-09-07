@@ -19,14 +19,15 @@ const OutlineComponent: React.FC<Props> = ({ component, onSelect }) => {
   }
 
   return (
-    <div role="listitem">
-      <UIComponent onClick={handleComponentClick}>
+    <>
+      <UIComponent className="dtp-outline-component" onClick={handleComponentClick}>
         <UIComponentLink href={componentHash}>
           <UIComponentName>{component.name}</UIComponentName>
         </UIComponentLink>
 
         {component.variants && (
           <AccordionTrigger
+            className="dtp-outline-expand"
             aria-label="Toggle variants list"
             asChild={true}
             onClick={(event) => event.stopPropagation()}
@@ -40,7 +41,7 @@ const OutlineComponent: React.FC<Props> = ({ component, onSelect }) => {
 
       {component.variants && (
         <AccordionContent>
-          <div role="list">
+          <div role="list" className="dtp-outline-variants">
             {component.variants.map((variant) => (
               <UIItem key={variant.name} role="listitem">
                 <VariantItem variant={variant} component={component} />
@@ -49,7 +50,7 @@ const OutlineComponent: React.FC<Props> = ({ component, onSelect }) => {
           </div>
         </AccordionContent>
       )}
-    </div>
+    </>
   )
 }
 

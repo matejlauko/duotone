@@ -21,14 +21,14 @@ const Preview: React.FC<Props> = ({ kitName, components, previewStyles }) => {
 
   return (
     <>
-      <UIPreview className={previewTheme}>
-        <UISidebar>
-          {kitName && <UIKitName>{kitName}</UIKitName>}
+      <UIPreview className={`dt-preview ${previewTheme}`}>
+        <UISidebar className="dtp-sidebar">
+          {kitName && <UIKitName className="dtp-sidebar-kitname">{kitName}</UIKitName>}
 
           <Outline components={componentsList} />
         </UISidebar>
 
-        <UIComponents>
+        <UIComponents className="dtp-components">
           <PreviewComponents components={componentsList} />
         </UIComponents>
       </UIPreview>
@@ -73,4 +73,5 @@ const UIComponents = styled('div', {
   boxSizing: 'border-box',
   position: 'relative',
   flexGrow: 1,
+  // marginLeft: '$outline$width',
 })

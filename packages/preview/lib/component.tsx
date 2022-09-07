@@ -11,15 +11,19 @@ const PreviewComponent: React.FC<Props> = ({ component }) => {
   const headerWrapRef = React.useRef<React.ElementRef<typeof UIHeaderWrap>>(null)
 
   return (
-    <UIComponentContainer data-component={component.name} key={component.name}>
-      <UIHeaderWrap ref={headerWrapRef}>
-        <UIComponentHeading>{component.name}</UIComponentHeading>
+    <UIComponentContainer
+      className="dtp-component"
+      data-component={component.name}
+      key={component.name}
+    >
+      <UIHeaderWrap className="dtp-component-header" ref={headerWrapRef}>
+        <UIComponentHeading className="dtp-component-heading">{component.name}</UIComponentHeading>
       </UIHeaderWrap>
-      <UIHeaderShadow />
+      <UIHeaderShadow className="dtp-component-header-shadow" />
 
-      <UIVariants>
+      <UIVariants className="dtp-variants">
         {component.render && (
-          <UIPanel data-variant="default">
+          <UIPanel className="dtp-variant-panel" data-variant="default">
             <PreviewOption component={component} />
           </UIPanel>
         )}
@@ -39,12 +43,12 @@ const PreviewVariant: React.FC<{
   variant: Variant
 }> = ({ component, variant }) => {
   return (
-    <div data-variant={variant.name} key={variant.name}>
-      <UIVariantHeading>{variant.name}</UIVariantHeading>
+    <div className="dtp-variant" data-variant={variant.name} key={variant.name}>
+      <UIVariantHeading className="dtp-variant-heading">{variant.name}</UIVariantHeading>
 
-      <UIPanel key={variant.name}>
+      <UIPanel className="dtp-variant-panel" key={variant.name}>
         {variant.options.map((option, idx) => (
-          <div key={idx}>
+          <div key={idx} className="dtp-variant-option">
             <PreviewOption component={component} variant={variant} option={option} />
           </div>
         ))}

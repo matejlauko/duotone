@@ -92,7 +92,7 @@ export const generateThemeFromPreviewStyles = (previewStylesConfig?: StylesConfi
 }
 
 export const { config, css, styled, theme, createTheme } = Stitches.createStitches({
-  prefix: 'dtp',
+  prefix: '_dtp',
   theme: generateThemeFromPreviewStyles(),
 })
 

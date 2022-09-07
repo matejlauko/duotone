@@ -9,7 +9,11 @@ const VariantItem: React.FC<Props> = ({ component, variant }) => {
     component.name
   )}&variant=${encodeURIComponent(variant.name)}`
 
-  return <UIVariant href={variantHash}>{variant.name}</UIVariant>
+  return (
+    <UIVariant className="dtp-outline-variant" href={variantHash}>
+      {variant.name}
+    </UIVariant>
+  )
 }
 
 export default VariantItem

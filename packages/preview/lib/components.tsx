@@ -43,8 +43,8 @@ const PreviewComponents = React.memo<Props>(function PreviewComponents({ compone
   useHashChange(scrollToItemByHash)
 
   return (
-    <UIContainer>
-      <UIComponents>
+    <UIContainer className="dtp-components-container">
+      <UIComponents className="dtp-components-grid">
         {components.map((component) => (
           <PreviewComponent key={component.name} component={component} />
         ))}
