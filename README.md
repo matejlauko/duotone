@@ -1,42 +1,32 @@
-<div align="center">
+<p align="center">
 <img width="256px" src="https://duotone.lauko.io/assets/logo.svg" alt="duotone logo" />
-<br/>
+</p>
 
-<hr/>
+<p align="center">
+<a href="https://www.npmjs.com/package/@duotone/react" target="_blank"><img src="https://img.shields.io/npm/v/@duotone/react?color=blue" alt="npm version" /></a>
+</p>
 
-</div>
+<h1>duotone - visual theme editor + live component preview</h1>
 
-<br/>
+Craft perfect themes that fit your brand.
 
-<h1>duotone</h1>
-
-![npm package version](https://img.shields.io/npm/v/@duotone/react)
-
-### Visual theme editor with live component preview
-
-Craft perfect themes that fit your brand.<br/>
-Design and prototype quicker by getting an overview of all the UI components you use.<br/>
-
-<br/>
+Design and prototype quicker by getting an overview of all the UI components you use.
 
 #### With duotone you can:
 
-- Preview how all the components and their variants look side-by-side on one organized page
-- Edit design tokens and see changes live
-  <br/>
+- 🖼 Preview how all the components and their variants look side-by-side on one organized page
+- 🎨 Edit design tokens and see changes live
 
----
+<br/>
 
-#### Contents
+## Contents
 
+- [Contents](#contents)
 - [Get started](#get-started)
-  - [Install](#install)
-  - [Add script](#add-script)
-  - [Run](#run)
-  - [Open](#open)
-- [Architecture](#architecture)
-  - [CLI & Server](#cli--server)
-  - [App](#app)
+    - [Install](#install)
+    - [Add script](#add-script)
+    - [Run](#run)
+    - [Open](#open)
 - [Configure](#configure)
   - [Config file](#config-file)
     - [Themes](#themes)
@@ -45,14 +35,19 @@ Design and prototype quicker by getting an overview of all the UI components you
     - [CreateTheme function](#createtheme-function)
     - [Provider decorator](#provider-decorator)
     - [Styling](#styling)
+- [Architecture](#architecture)
+    - [CLI & Server](#cli--server)
+    - [App](#app)
+    - [Preview](#preview)
 - [API](#api)
   - [CLI](#cli)
-  - [Preview](#preview)
-    - [ComponentConfig](#componentconfig)
-    - [PreviewStyles](#previewstyles)
+  - [Preview](#preview-1)
+      - [ComponentConfig](#componentconfig)
+      - [ComponentsConfig](#componentsconfig)
+      - [StylesConfig](#stylesconfig)
     - [Provider](#provider)
     - [CreateTheme](#createtheme)
-    - [ThemeStore](#themestore)
+    - [ThemePack](#themepack)
 - [Author](#author)
 - [License](#license)
 
@@ -71,7 +66,11 @@ or
 pnpm add -D @duotone/react
 ```
 
-This will also create an **example configuration for you in `.duotone` folder** at the root of your project.
+Next, create default config using:
+
+```bash
+npx duotone init
+```
 
 #### Add script
 
@@ -98,33 +97,15 @@ pnpm duotone
 
 #### Open
 
-Open the duotone app in your browser. By default:
+Open the duotone app in your browser. By default it's at
 
 ```
 http://localhost:7890
 ```
 
-You'll see an example setup of duotone.
+You'll see the example setup of duotone!
 
-_Now let's add your own…_
-
----
-
-## Architecture
-
-#### CLI & Server
-
-The bulding and dev server are powered by [Vite](https://vitejs.dev/) and [esbuild](https://esbuild.github.io/).
-These are much faster than Webpack and babel, giving superior DX.
-
-Building Typescript and importing static files is handled automatically.
-Supports only ES-modules.
-
-The code is heavily based on [Ladle](https://ladle.dev/) which is a great alternative to Storybook.
-
-#### App
-
-Powered by React and [jotai](https://jotai.org/) for state management.
+_Now let's add your own 👇👇👇_
 
 ---
 
@@ -158,20 +139,19 @@ export default {
   },
 
   /**
-   * Component library branding, all optional
+   * Name of the UI kit (optional)
    */
-  name: 'Our UI kit',
-  description: 'React component library for our apps',
-  // Uri or path to library logo
-  logo: '../assets/logo.svg',
-  // Url of the components librray documentation
-  url: 'https://ui.example.com',
+  name: 'Our UI',
 
   /**
-   * Dev config, optional
+   * Dev config (optional)
    */
   // Port of the duotone server
   port: 7890,
+  // Folder with publishable duotone after running "duotone build"
+  outDir: 'duotone-dist',
+  // Public path of published duotone
+  base: '/',
   // File with Vite configuration
   viteConfig: '../vite.config.js',
 }
@@ -247,7 +227,7 @@ export const dark = {
 <br/>
 
 If you want to name themes different to named exports<br/>
-or add specific [preview styles](#PreviewStyles) for a theme, use this config format:
+or add specific [preview styles](#previewstyles) for a theme, use this config format:
 
 ```js
 // config.mjs
@@ -275,7 +255,7 @@ _Should be named `preview` with either `.jsx` or `.tsx` extension_
 
 Export as `default` or as a named export `components`
 
-Object with keys as component names and values as [ComponentConfig](#ComponentConfig).
+Object with keys as component names and values as [ComponentsConfig](#componentsconfig).
 
 Example:
 
@@ -297,7 +277,7 @@ export const components = {
 
 #### CreateTheme function
 
-[CreateTheme](#CreateTheme)
+[CreateTheme](#createtheme)
 
 Define and export a `createTheme` function to customize how the updated theme will get generated.
 
@@ -306,16 +286,16 @@ By default it merges (deep) all updated tokens into original theme.
 The funciton accepts two arguments:
 
 - `tokens` - object with updated tokens
-- `themeStore` - currently selected theme information (use `themeStore.theme` [ThemeStore](#ThemeStore)
+- `themePack` - currently selected theme information (use `themePack.theme` [ThemePack](#themepack)
 
 ```ts
-export const createTheme = (tokens: ThemeTokens, themeStore: ThemeStore) =>
-  merge({}, themeStore.tokens, tokens)
+export const createTheme = (tokens: ThemeTokens, themePack: ThemePack) =>
+  merge({}, themePack.tokens, tokens)
 ```
 
 #### Provider decorator
 
-[Provider](#Provider)
+[Provider](#provider)
 
 Export a provider that wraps around the whole preview tree.
 Use it to pass theme context, add internalization or run code that add global styling.
@@ -334,18 +314,25 @@ export const Provider = ({theme, children}) => (
 
 #### Styling
 
-You can custom style the preview
+You can customize the preview styling
 
-For all themes, export `previewStyles` from preview file.<br/>
-[PreviewStyles](#PreviewStyles)
+To do so for all themes, export `previewStyles` from preview file.<br/>
+[StylesConfig](#stylesconfig)
 
 ```js
 // preview.jsx
 
 export const previewStyles = {
-  background: '#ccc',
-  color: '#000',
-  panelBackground: '#FFF',
+  background: '#f8f9fa',
+  fontSize: '16px',
+  fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+  fontColor: '#151718',
+  primaryColor: '#3e63dd',
+
+  renderPanel: {
+    background: '#fff',
+    fontColor: '#151718',
+  },
 }
 ```
 
@@ -360,14 +347,68 @@ To style each theme preview individually, add `previewStyles` to theme config ob
       name: 'light',
       path: '../theme.ts',
       previewStyles: {
-        background: '#ccc',
-        color: '#000',
-        panelBackground: '#FFF',
+        background: '#f8f9fa',
+        fontSize: '16px',
+        fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+        fontColor: '#151718',
+        primaryColor: '#3e63dd',
+        renderPanel: {
+          background: '#fff',
+          fontColor: '#151718',
+        },
       }
     }
   }
 }
 ```
+
+---
+
+## Architecture
+
+#### CLI & Server
+
+The bulding and dev server are powered by [Vite](https://vitejs.dev/) and [esbuild](https://esbuild.github.io/).
+These are much faster than Webpack and babel, giving superior DX.
+
+Building Typescript and importing static files is handled automatically.
+Supports only ES-modules.
+
+The code is heavily based on [Ladle](https://ladle.dev/), which is a great alternative to Storybook.
+
+#### App
+
+Powered by [React](https://reactjs.org), [jotai](https://jotai.org/) for state management.
+
+#### Preview
+
+Components preview lives in it's own pacakge [@duotone/preview](./packages/preview/).
+
+You can install and use it on it's own as a React component!
+
+**Install**
+
+```bash
+npm install @duotone/preview
+or
+yarn add @duotone/preview
+or
+pnpm add @duotone/preview
+```
+
+**Use**
+
+```jsx
+import DuotonePreview from '@duotone/preview'
+
+export default () => (
+  <DuotonePreview kitName="My UI" components={components} previewStyles={previewStyles} />
+)
+```
+
+See API for [components - ComponentsConfig](#componentsconfig) and [previewStyles - StylesConfig](#stylesconfig)
+
+---
 
 ## API
 
@@ -388,6 +429,8 @@ Options
 ### Preview
 
 ##### ComponentConfig
+
+A component preview config
 
 ```ts
 type ComponentConfig = {
@@ -414,20 +457,39 @@ type ComponentConfig = {
 }
 ```
 
-##### PreviewStyles
+##### ComponentsConfig
+
+Components preview config object
 
 ```ts
-type PreviewStyles = {
-  // Preview background color
-  background?: string
-  // Text color
-  color?: string
-  // Background color of component rendering panels
-  panelBackground?: string
+type ComponentConfig = {
+  [ComponentName: string]: ComponentConfig
+}
+```
+
+##### StylesConfig
+
+Style the preview
+
+```ts
+type StylesConfig = {
+  fontFamily?: string // Preview font family
+  fontSize?: string // Base preview font size
+  fontColor?: string // Text color
+  background?: string // Preview background color
+  primaryColor?: string // Primary color for highlights
+
+  // Panel that renders the component options
+  renderPanel?: {
+    background?: string // Background of the render panel
+    fontColor?: string // Text colors inside the render panel
+  }
 }
 ```
 
 #### Provider
+
+Provider that wraps previewed components
 
 ```ts
 type Provider = (
@@ -437,24 +499,28 @@ type Provider = (
 
 #### CreateTheme
 
+Fn to create dervied themes
+
 ```ts
-type CreateTheme = (tokens: ThemeTokens, themeStore: ThemeStore) => {} | string
+type CreateTheme = (tokens: ThemeTokens, themePack: ThemePack) => {} | string
 ```
 
-#### ThemeStore
+#### ThemePack
+
+Theme store object
 
 ```ts
-type ThemeStore<T = {}> = {
+type ThemePack<T = {}> = {
   name: string
   theme: T
   tokens: ThemeTokens
-  previewStyles?: PreviewStyles
+  previewStyles?: StylesConfig
 }
 ```
 
 ## Author
 
-Matt Lauko (@matejlauko)
+Matej Lauko ([@matejlauko](https://twitter.com/matejlauko))
 
 ## License
 
