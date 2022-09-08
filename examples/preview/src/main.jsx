@@ -2,74 +2,67 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import Preview from '@duotone/preview'
+import { Button, Text, Link, TextInput } from './components'
 
 /** @type {import('@duotone/preview').ComponentsConfig} **/
 const components = {
   Button: {
-    render: (props) => <button>Button</button>,
+    render: (props) => <Button {...props}>Button</Button>,
     variants: {
       Size: {
+        prop: 'size',
         options: ['small', 'medium', 'large'],
+      },
+      Color: {
+        prop: 'color',
+        options: ['black', 'green', 'red'],
       },
     },
   },
-  Button1: {
-    render: (props) => <button>Button</button>,
+  Text: {
+    render: (props) => <Text {...props}>design+code=💙</Text>,
     variants: {
       Size: {
+        prop: 'size',
         options: ['small', 'medium', 'large'],
+      },
+      Color: {
+        prop: 'color',
+        options: ['black', 'mint', 'red', 'indigo'],
       },
     },
   },
-  Button2: {
-    render: (props) => <button>Button</button>,
+  Link: {
+    render: (props) => (
+      <Link href="https://github.com/matejlauko/duotone/" target="_blank" {...props}>
+        https://github.com/matejlauko/duotone/
+      </Link>
+    ),
     variants: {
       Size: {
+        prop: 'size',
         options: ['small', 'medium', 'large'],
+      },
+      Color: {
+        prop: 'color',
+        options: ['indigo', 'black', 'mint', 'red'],
       },
     },
   },
-  Button3: {
-    render: (props) => <button>Button</button>,
+  ['Text Input']: {
+    render: (props) => <TextInput {...props} placeholder="make something amazing" />,
     variants: {
       Size: {
+        prop: 'size',
         options: ['small', 'medium', 'large'],
       },
-    },
-  },
-  Button4: {
-    render: (props) => <button>Button</button>,
-    variants: {
-      Size: {
-        options: ['small', 'medium', 'large'],
-      },
-    },
-  },
-  Button5: {
-    render: (props) => <button>Button</button>,
-    variants: {
-      Size: {
-        options: ['small', 'medium', 'large'],
+      Disabled: {
+        prop: 'disabled',
+        options: [true, false],
       },
     },
   },
 }
-
-/** @type {import('@duotone/preview').UserPreviewStyles} **/
-// const styles = {
-//   colors: {
-//     background: 'red',
-//     panelBackground: 'blue',
-//     panelBorder: 'green',
-//     text: 'yellow',
-//   },
-//   fonts: {
-//     body: 'serif',
-//   },
-//   fontSizes: {
-//     body: '20px',
-//   },
-// };
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
