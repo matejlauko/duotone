@@ -26,7 +26,7 @@ const PreviewOption: React.FC<Props> = ({ component, variant, option }) => {
           ? typeof option === 'object'
             ? option.render()
             : component.render!({ [variant.prop!]: option })
-          : component.render!()}
+          : component.render!({})}
       </div>
     </>
   )

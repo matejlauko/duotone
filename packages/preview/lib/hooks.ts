@@ -1,6 +1,11 @@
 import * as React from 'react'
 
-export const useHashChange = (onChange: (hash: string) => void, runImmediately = false): void => {
+export const useHashChange = (
+  onChange: (hash: string) => void,
+  opts: { runImmediately?: boolean } = {}
+): void => {
+  const { runImmediately = false } = opts
+
   const isFirst = React.useRef(true)
 
   React.useEffect(() => {

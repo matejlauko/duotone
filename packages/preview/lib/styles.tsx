@@ -18,8 +18,10 @@ const DEFAULT_PREVIEW_STYLES: Required<StylesConfig> & {
   },
 } as const
 
+export const COMPONENT_HEADING_HEIGHT_PX = 52
+
 export const generateThemeFromPreviewStyles = (previewStylesConfig?: StylesConfig) => {
-  const styles = merge(DEFAULT_PREVIEW_STYLES, previewStylesConfig)
+  const styles = merge({}, DEFAULT_PREVIEW_STYLES, previewStylesConfig)
   const [previewFontSizeVal, previewFontSizeUnit] = getValueAndUnit(styles.fontSize)
 
   return {
@@ -37,7 +39,7 @@ export const generateThemeFromPreviewStyles = (previewStylesConfig?: StylesConfi
       heading_fontSize: `${previewFontSizeVal * 1.15}${previewFontSizeUnit}`,
       heading_color: styles.fontColor,
       gap: '4rem',
-      heading_height: '52px',
+      heading_height: `${COMPONENT_HEADING_HEIGHT_PX}px`,
       heading_fontWeight: 500,
     },
 
@@ -76,16 +78,14 @@ export const generateThemeFromPreviewStyles = (previewStylesConfig?: StylesConfi
       component_fontSize: '0.875rem',
       variant_fontSize: '0.8125rem',
 
-      button_hover_background: '#e6e8eb',
-      button_hover_color: styles.primaryColor,
-      button_active_background: '#dfe3e6',
-      button_active_color: styles.primaryColor,
+      item_hover_background: '#e6e8eb',
+      link_hover_color: styles.primaryColor,
 
       expand_color: '#687076',
       expand_borderRadius: '4px',
-      expand_hover_background: '#d7dbdf',
+      expand_hover_background: 'hsla(210, 98.8%, 14.4%, 0.055)',
       expand_hover_color: styles.primaryColor,
-      expand_active_background: '#c1c8cd',
+      expand_active_background: 'hsla(210, 94.1%, 11.1%, 0.075)',
       expand_active_color: styles.primaryColor,
     },
   }

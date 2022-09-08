@@ -1,7 +1,8 @@
 import * as React from 'react'
 import PreviewComponent from './component'
+import { usePreviewContext } from './context'
 import { useHashChange } from './hooks'
-import { styled, theme } from './styles'
+import { styled } from './styles'
 import { Component } from './types'
 
 type Props = {
@@ -9,38 +10,26 @@ type Props = {
 }
 
 const PreviewComponents = React.memo<Props>(function PreviewComponents({ components }) {
-  const scrollToItemByHash = React.useCallback((hash: string) => {
-    const hashState = Object.fromEntries(
-      decodeURIComponent(hash)
-        .replace(/^#/, '')
-        .split('&')
-        .map((part) => part.split('='))
-    )
-    const { component, variant } = hashState
+  const { scrollToComponent } = usePreviewContext()
 
-    if (!component) return
+  const scrollToItemByHash = React.useCallback(
+    (hash: string) => {
+      const hashState = Object.fromEntries(
+        decodeURIComponent(hash)
+          .replace(/^#/, '')
+          .split('&')
+          .map((part) => part.split('='))
+      )
+      const { component, variant } = hashState
 
-    const componentEl = document.querySelector(`[data-component="${component}"]`)
+      if (!component) return
 
-    if (!componentEl) return
+      scrollToComponent(component, variant)
+    },
+    [scrollToComponent]
+  )
 
-    let offset = 8
-    let targetEl: Element | null = componentEl
-
-    if (variant) {
-      targetEl = componentEl.querySelector(`[data-variant="${variant}"]`)
-      offset += parseInt(theme.component.heading_height.value, 10)
-    }
-
-    if (targetEl) {
-      window.scrollTo({
-        top: targetEl.getBoundingClientRect().top + window.scrollY - offset,
-        behavior: 'smooth',
-      })
-    }
-  }, [])
-
-  useHashChange(scrollToItemByHash)
+  useHashChange(scrollToItemByHash, { runImmediately: true })
 
   return (
     <UIContainer className="dtp-components-container">

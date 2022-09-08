@@ -20,24 +20,26 @@ const OutlineComponent: React.FC<Props> = ({ component, onSelect }) => {
 
   return (
     <>
-      <UIComponent className="dtp-outline-component" onClick={handleComponentClick}>
+      <UIItem className="dtp-outline-component" onClick={handleComponentClick}>
         <UIComponentLink href={componentHash}>
           <UIComponentName>{component.name}</UIComponentName>
         </UIComponentLink>
 
         {component.variants && (
-          <AccordionTrigger
-            className="dtp-outline-expand"
-            aria-label="Toggle variants list"
-            asChild={true}
-            onClick={(event) => event.stopPropagation()}
-          >
-            <UIExpandButton>
-              <AccordionChevron />
-            </UIExpandButton>
-          </AccordionTrigger>
+          <UIExpandWrap>
+            <AccordionTrigger
+              className="dtp-outline-expand"
+              aria-label="Toggle variants list"
+              asChild={true}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <UIExpandButton>
+                <AccordionChevron />
+              </UIExpandButton>
+            </AccordionTrigger>
+          </UIExpandWrap>
         )}
-      </UIComponent>
+      </UIItem>
 
       {component.variants && (
         <AccordionContent>
@@ -56,7 +58,7 @@ const OutlineComponent: React.FC<Props> = ({ component, onSelect }) => {
 
 export default OutlineComponent
 
-export const UIItem = styled('div', {
+const UIItem = styled('div', {
   boxSizing: 'border-box',
   height: '34px',
   display: 'flex',
@@ -68,35 +70,38 @@ export const UIItem = styled('div', {
   userSelect: 'none',
 
   '&:hover': {
-    background: '$outline$button_hover_background',
-  },
-  '&:active': {
-    background: '$outline$button_active_background',
+    background: '$outline$item_hover_background',
   },
 })
 
 const UIComponentLink = styled('a', {
   all: 'unset',
   color: 'inherit',
+  overflow: 'hidden',
+  paddingLeft: '16px',
+  display: 'inline-flex',
+  alignItems: 'center',
+  paddingRight: '4px',
+  flex: 1,
 
   '&:hover, &:focus-visible': {
-    color: '$outline$button_hover_color',
+    color: '$outline$link_hover_color',
   },
 })
 
 const UIComponentName = styled(AccordionHeader, {
   all: 'unset',
+  boxSizing: 'border-box',
   display: 'block',
   fontFamily: '$root$fontFamily',
   lineHeight: '$root$lineHeight',
   fontSize: '$outline$component_fontSize',
   color: 'inherit',
   fontWeight: 'inherit',
-})
-
-const UIComponent = styled(UIItem, {
-  paddingLeft: '16px',
-  alignItems: 'center',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  maxWidth: '100%',
 })
 
 const UIExpandButton = styled('button', {
@@ -131,4 +136,10 @@ const UIExpandButton = styled('button', {
     border: 'none',
     outline: 'none',
   },
+})
+
+const UIExpandWrap = styled('div', {
+  boxSizing: 'border-box',
+  display: 'inline-flex',
+  alignItems: 'center',
 })
