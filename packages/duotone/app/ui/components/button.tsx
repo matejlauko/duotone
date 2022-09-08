@@ -51,7 +51,7 @@ export const UIButton = styled(BaseButton, {
   variants: {
     variant: {
       solid: {
-        color: '$textContrast',
+        color: '$solidText',
       },
       ghost: {
         color: '$text',
@@ -65,49 +65,48 @@ export const UIButton = styled(BaseButton, {
     },
   },
   compoundVariants: [
-    // Primary
+    // Solid
     {
       variant: 'solid',
       tone: 'accent',
       css: {
-        backgroundColor: '$solidAccent',
+        backgroundColor: '$solidAccentBg',
 
         '&:hover:not(:disabled)': {
-          bg: '$solidAccentHover',
+          bg: '$solidAccentBgHover',
         },
         '&:active:not(:disabled), &[data-state="open"]': {
-          bg: '$solidAccentActive',
+          bg: '$solidAccentBgActive',
         },
       },
     },
 
-    // Secondary
+    // Ghost
     {
       variant: 'ghost',
       tone: 'destroy',
       css: {
-        color: '$text',
-
         '&:hover:not(:disabled)': {
-          bg: '$ghostDestroyHover',
+          bg: '$ghostDestroyBgHover',
           borderColor: '$borderDestroy',
+          color: '$ghostDestroyTextHover',
         },
         '&:active:not(:disabled), &[data-state="open"]': {
-          bg: '$ghostDestroyActive',
+          bg: '$ghostDestroyBgActive',
         },
       },
     },
-
     {
       variant: 'ghost',
       tone: 'accent',
       css: {
         '&:hover:not(:disabled)': {
-          bg: '$ghostAccentHover',
+          bg: '$ghostAccentBgHover',
           borderColor: '$borderAccent',
+          color: '$ghostAccentTextHover',
         },
         '&:active:not(:disabled), &[data-state="open"]': {
-          bg: '$ghostAccentActive',
+          bg: '$ghostAccentBgActive',
         },
       },
     },

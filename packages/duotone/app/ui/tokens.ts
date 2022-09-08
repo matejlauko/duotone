@@ -1,6 +1,6 @@
 import { colors } from './colors'
 
-export const mainThemeTokens = {
+export const lightThemeTokens = {
   colors: {
     hiContrast: colors.black,
     loContrast: colors.white,
@@ -18,6 +18,7 @@ export const mainThemeTokens = {
 
     panelBg: colors.grayA2,
     overlayBg: colors.grayA11,
+    tooltipBg: colors.grayA12,
     resultBg: colors.accentA5,
     scrollThumbBg: colors.grayA8,
 
@@ -29,6 +30,7 @@ export const mainThemeTokens = {
     textPlaceholder: colors.gray9,
 
     textAccent: colors.accent11,
+    textDestroy: colors.red11,
 
     // Lines & Borders
 
@@ -47,19 +49,27 @@ export const mainThemeTokens = {
 
     // Buttons
 
-    solidAccent: colors.accent9,
-    solidAccentHover: colors.accent10,
-    solidAccentActive: colors.accent11,
+    solidText: '$loContrast',
 
-    ghost: 'transparent',
-    ghostHover: colors.grayA3,
-    ghostActive: colors.grayA4,
+    solidAccentBg: colors.accent9,
+    solidAccentBgHover: colors.accent10,
+    solidAccentBgActive: colors.accent11,
 
-    ghostAccentHover: colors.accent3,
-    ghostAccentActive: colors.accent4,
+    outlineBorder: colors.gray7,
+    outlineBgHover: colors.grayA3,
+    outlineBgActive: colors.grayA4,
 
-    ghostDestroyHover: colors.red3,
-    ghostDestroyActive: colors.red4,
+    ghostBg: 'transparent',
+    ghostBgHover: colors.grayA3,
+    ghostBgActive: colors.grayA4,
+
+    ghostAccentBgHover: colors.accent3,
+    ghostAccentBgActive: colors.accent4,
+    ghostAccentTextHover: '$textAccent',
+
+    ghostDestroyBgHover: colors.red3,
+    ghostDestroyBgActive: colors.red4,
+    ghostDestroyTextHover: '$textDestroy',
 
     // Controls
 
@@ -82,17 +92,16 @@ export const mainThemeTokens = {
     mono: "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
   },
   fontSizes: {
-    0: '11px',
-    1: '12px',
-    2: '13px',
-    3: '14px',
-    4: '15px',
-    5: '16px',
-    6: '18px',
-    7: '20px',
-    8: '24px',
-    9: '28px',
-    10: '32px',
+    1: '0.75rem',
+    2: '0.8125rem',
+    3: '0.875rem',
+    4: '0.9375',
+    5: '1rem',
+    6: '1.125rem',
+    7: '1.25rem',
+    8: '1.5rem',
+    9: '1.75rem',
+    10: '2rem',
 
     base: '$fontSizes$3',
   },
@@ -160,12 +169,10 @@ export const mainThemeTokens = {
     under: 0,
     base: 1,
     search: 3,
-    highlight: 11,
-    fixedBox: 100,
-    nav: 200,
+    popover: 200,
+    tooltip: 250,
     dialogOverlay: 300,
     dialog: 301,
-    splash: 500,
   },
   transitions: {
     appear_fast: '.15s cubic-bezier(0, 0, 0.40, 1)', // ease-out
@@ -177,19 +184,86 @@ export const mainThemeTokens = {
   },
 }
 
-export const headerThemeTokens = {
+export const darkThemeTokens = {
   colors: {
     hiContrast: colors.white,
     loContrast: colors.black,
+
+    // Backgrounds
+
     uiBg: colors.grayDark2,
-    text: colors.white,
-    textMuted: colors.grayDark12,
-    borderAccent: colors.accentDark6,
-    borderDestroy: colors.redDark6,
+
+    bodyBg: colors.grayDark1,
+
+    panelBg: colors.grayDarkA2,
+    overlayBg: colors.grayDarkA11,
+    tooltipBg: colors.grayDarkA12,
+    resultBg: colors.accentDarkA5,
+    scrollThumbBg: colors.grayDarkA8,
+
+    // Texts
+
+    text: '$hiContrast',
+    textMuted: colors.grayDark11,
+    textContrast: '$loContrast',
+    textPlaceholder: colors.grayDark9,
+
+    textAccent: colors.accentDark11,
+    textDestroy: colors.redDark11,
+
+    // Lines & Borders
+
+    lineUltraLight: colors.grayDark3,
+    lineLight: colors.grayDark5,
+    line: colors.grayDark6,
+    border: colors.grayDark7,
+    borderHover: colors.grayDark8,
+
     focus: colors.accentDarkA8,
-    ghostAccentHover: colors.accentDark3,
-    ghostAccentActive: colors.accentDark4,
-    ghostDestroyHover: colors.redDark3,
-    ghostDestroyActive: colors.redDark4,
+
+    borderAccent: colors.accentDark6,
+    borderAccentActive: colors.accentDark9,
+
+    borderDestroy: colors.redDark6,
+
+    // Buttons
+
+    solidText: '$hiContrast',
+
+    solidAccentBg: colors.accentDark9,
+    solidAccentBgHover: colors.accentDark10,
+    solidAccentBgActive: colors.accentDark11,
+
+    outlineBorder: colors.grayDark7,
+    outlineBgHover: colors.grayDarkA3,
+    outlineBgActive: colors.grayDarkA4,
+
+    ghostBg: 'transparent',
+    ghostBgHover: colors.grayDarkA3,
+    ghostBgActive: colors.grayDarkA4,
+
+    ghostAccentBgHover: colors.accentDark3,
+    ghostAccentBgActive: colors.accentDark4,
+    ghostAccentTextHover: '$text',
+
+    ghostDestroyBgHover: colors.redDark3,
+    ghostDestroyBgActive: colors.redDark4,
+    ghostDestroyTextHover: '$text',
+
+    // Controls
+
+    controlBg: '$loContrast',
+    controlBgHover: colors.grayDark1,
+    controlBgActive: colors.grayDark2,
+    controlBgInactive: colors.grayDark5,
+
+    editorInputBg: '$uiBg3',
+    editorInputActive: '$uiBg4',
+
+    // Icons
+
+    icon: colors.grayDark11,
+    iconHover: colors.grayDark12,
+    iconActive: colors.white,
   },
 }

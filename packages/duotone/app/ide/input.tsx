@@ -105,14 +105,14 @@ export const UIEditorInput = styled('input', baseTextInputCss, {
   variants: {
     valType: {
       size: {
-        width: '10ch',
+        width: '13ch',
       },
       color: {
         width: '100%',
         maxWidth: 300,
       },
       number: {
-        width: '10ch',
+        width: '13ch',
       },
       discrete: {
         width: '100%',

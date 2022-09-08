@@ -40,6 +40,8 @@ const UIContent = styled(AccordionPrimitive.Content, {
     animated: {
       true: {
         '@motion': {
+          willChange: 'height',
+
           '&[data-state="open"]': {
             animation: `${slideDown} 300ms cubic-bezier(0.87, 0, 0.13, 1) forwards`,
           },
@@ -60,6 +62,7 @@ const UIChevron = styled(ChevronDownIcon, {
   '[data-state=open] &': { transform: 'rotate(180deg)' },
 })
 
+// Exports
 export const Accordion = styled(AccordionPrimitive.Root)
 export const AccordionItem = UIItem
 export const AccordionContent = UIContent

@@ -8,7 +8,7 @@ export {
   keyframes,
   createTheme,
   globalCss,
-  headerTheme,
+  darkTheme,
 } from './config'
 
 export * from './components'

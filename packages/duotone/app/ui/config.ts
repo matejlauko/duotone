@@ -1,11 +1,11 @@
 import * as Stitches from '@stitches/react'
 import { ConfigType } from '@stitches/react/types/config'
-import { mainThemeTokens, headerThemeTokens } from './tokens'
+import { lightThemeTokens, darkThemeTokens } from './tokens'
 
 export const { config, createTheme, css, getCssText, globalCss, styled, theme, keyframes } =
   Stitches.createStitches({
     prefix: 'dt',
-    theme: mainThemeTokens,
+    theme: lightThemeTokens,
     media: {
       motion: '(prefers-reduced-motion: no-preference)',
     },
@@ -75,4 +75,4 @@ export type ExactTheme = typeof theme
 export type Theme = ConfigType.Theme<ExactTheme>
 export type Color = keyof ExactTheme['colors']
 
-export const headerTheme = createTheme(headerThemeTokens)
+export const darkTheme = createTheme(darkThemeTokens)

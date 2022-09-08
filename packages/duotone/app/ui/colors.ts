@@ -45,6 +45,19 @@ export const colors = {
   grayA11: 'hsla(206, 97.0%, 4.8%, 0.593)',
   grayA12: 'hsla(202, 97.0%, 2.4%, 0.934)',
 
+  grayDarkA1: 'hsla(0, 0%, 0%, 0)',
+  grayDarkA2: 'hsla(181, 98.9%, 91.8%, 0.026)',
+  grayDarkA3: 'hsla(182, 86.7%, 91.4%, 0.057)',
+  grayDarkA4: 'hsla(209, 86.7%, 93.9%, 0.083)',
+  grayDarkA5: 'hsla(200, 90.3%, 93.4%, 0.109)',
+  grayDarkA6: 'hsla(209, 95.3%, 93.5%, 0.139)',
+  grayDarkA7: 'hsla(204, 98.5%, 93.9%, 0.182)',
+  grayDarkA8: 'hsla(209, 94.0%, 94.7%, 0.265)',
+  grayDarkA9: 'hsla(207, 97.3%, 94.0%, 0.412)',
+  grayDarkA10: 'hsla(209, 99.4%, 95.2%, 0.472)',
+  grayDarkA11: 'hsla(208, 98.7%, 96.8%, 0.615)',
+  grayDarkA12: 'hsla(211, 86.7%, 99.6%, 0.927)',
+
   accent1: '#fdfdfe',
   accent2: '#f8faff',
   accent3: '#f0f4ff',
@@ -74,8 +87,8 @@ export const colors = {
   accentA5: 'hsla(225, 98.6%, 46.4%, 0.150)',
   accentA8: 'hsla(226, 99.5%, 43.1%, 0.448)',
 
+  accentDarkA5: 'hsla(227, 99.2%, 62.3%, 0.270)',
   accentDarkA8: 'hsla(226, 99.9%, 62.1%, 0.655)',
-  // accentDarkA5: 'hsla(225, 98.6%, 46.4%, 0.150)',
 
   red1: '#fffcfc',
   red2: '#fff8f8',

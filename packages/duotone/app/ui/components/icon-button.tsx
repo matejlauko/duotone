@@ -1,6 +1,7 @@
 import { BaseButton } from './button'
 import { styled } from '../config'
 import * as React from 'react'
+import { IconProps } from './icon'
 
 const defaultVariants = {
   size: 'md',
@@ -31,17 +32,30 @@ export const UIIconButton = styled(BaseButton, {
       },
     },
     variant: {
-      outline: {},
-      ghost: {
-        color: '$icon',
-        bg: '$ghost',
+      outline: {
+        color: '$text',
+        borderWidth: 2,
+        borderStyle: 'solid',
+        borderColor: '$border',
 
         '&:hover': {
-          bg: '$ghostHover',
+          bg: '$outlineBgHover',
+        },
+        '&:active': {
+          bg: '$outlineBgActive',
+          color: '$iconActive',
+        },
+      },
+      ghost: {
+        color: '$icon',
+        bg: '$ghostBg',
+
+        '&:hover': {
+          bg: '$ghostBgHover',
           color: '$iconHover',
         },
         '&:active': {
-          bg: '$ghostActive',
+          bg: '$ghostBgActive',
           color: '$iconActive',
         },
       },
@@ -57,7 +71,10 @@ export const IconButton = React.forwardRef<
   if (!children || !React.isValidElement(children)) return null
 
   const iconSize = size === 'xl' ? 'lg' : size
-  const iconChild = React.cloneElement(children, { color: 'blend', size: iconSize })
+  const iconChild = React.cloneElement(children as React.ReactElement<IconProps>, {
+    color: 'blend',
+    size: iconSize,
+  })
 
   return (
     <UIIconButton size={size} {...props} ref={forwardedRef}>

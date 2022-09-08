@@ -9,7 +9,6 @@ export const globalStyles = {
     '-webkit-font-smoothing': 'antialiased',
     '-moz-osx-font-smoothing': 'grayscale',
     textRendering: 'optimizeLegibility',
-    fontSize: '$base',
     scrollBehavior: 'smooth',
     overscrollBehavior: 'none',
   },

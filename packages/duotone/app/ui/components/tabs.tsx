@@ -11,11 +11,27 @@ const UITabs = styled(TabsPrimitive.Root, {
 const UIList = styled(TabsPrimitive.List, {
   flexShrink: 0,
   display: 'flex',
+  bg: '$uiBg4',
 })
 
 const UITrigger = styled(TabsPrimitive.Trigger, baseButtonCss, {
   position: 'initial',
   justifyContent: 'center',
+  height: '$control_lg',
+  px: '$9',
+  fontSize: '$base',
+  fontWeight: '$bold',
+
+  '&[aria-selected="false"]': {
+    color: '$textMuted',
+    bg: '$uiBg5',
+  },
+
+  '&[aria-selected="true"]': {
+    color: '$textAccent',
+    bg: '$uiBg',
+    boxShadow: 'inset 0 -2px 0 0 $colors$borderAccentActive',
+  },
 
   '&:focus': {
     position: 'relative',

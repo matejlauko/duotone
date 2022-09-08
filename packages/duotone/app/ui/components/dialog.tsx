@@ -47,7 +47,7 @@ const UIDialogContent = styled(DialogPrimitive.Content, panelCss, {
   bg: '$uiBg',
 
   '@motion': {
-    willChange: 'transform',
+    willChange: 'transform, opacity',
     animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
   },
 
@@ -57,7 +57,8 @@ const UIDialogContent = styled(DialogPrimitive.Content, panelCss, {
 })
 
 const UIDialogContentInner = styled('div', {
-  p: '$4',
+  py: '$4',
+  px: '$5',
   overflowY: 'auto',
   maxHeight: '100%',
   flex: 1,

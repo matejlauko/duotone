@@ -5,15 +5,16 @@ import { styled } from '../config'
 const TooltipRoot = TooltipPrimitive.Root
 const TooltipPortal = TooltipPrimitive.Portal
 const TooltipTrigger = TooltipPrimitive.Trigger
-const TooltipArrow = styled(TooltipPrimitive.Arrow, { fill: '$tooltip$bg' })
+const TooltipArrow = styled(TooltipPrimitive.Arrow, { fill: '$tooltipBg' })
 const TooltipContent = styled(TooltipPrimitive.Content, {
-  bg: '$overlayBg',
+  bg: '$tooltipBg',
   borderRadius: '$lg',
   boxShadow: '$3',
   color: '$textContrast',
   fontSize: '$1',
   fontWeight: '$medium',
   p: '$1 $2',
+  zIndex: '$tooltip',
 
   variants: {
     multiline: {

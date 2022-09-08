@@ -45,7 +45,7 @@ export const UIIcon = styled('svg', {
   },
 })
 
-type IconProps = Partial<AccessibleIconPrimitive.AccessibleIconProps> &
+export type IconProps = Partial<AccessibleIconPrimitive.AccessibleIconProps> &
   React.ComponentProps<typeof UIIcon>
 
 export function createIcon(

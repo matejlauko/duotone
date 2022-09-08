@@ -102,7 +102,7 @@ const UITokenName = styled('label', {
     changed: {
       true: {
         weight: '$bold',
-        color: '$solidAccent',
+        color: '$solidAccentBg',
       },
     },
   },
