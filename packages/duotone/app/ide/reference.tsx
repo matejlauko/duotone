@@ -23,8 +23,9 @@ const StitchesReference: React.FC<Props> = ({ path, value }) => {
     .reverse()
     .join('.')
 
-  const refValue =
-    useChangedTokenValue(absoluteRefTokenPath) ?? useCurrentThemeTokenValue(absoluteRefTokenPath)
+  const changedRefValue = useChangedTokenValue(absoluteRefTokenPath)
+  const currentRefValue = useCurrentThemeTokenValue(absoluteRefTokenPath)
+  const refValue = changedRefValue ?? currentRefValue
 
   const handleClick = () => {
     highlightToken(absoluteRefTokenPath)

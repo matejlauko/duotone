@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { styled } from '../ui'
+import { useDebouncedValue } from '../utils/hooks'
 import { getTokenType, TokenType } from '../utils/tokens'
 import ColorPicker from './colors/color-picker'
 import ValueInput from './input'
@@ -18,12 +19,14 @@ const TokenValue = React.memo<Props>(function TokenValue({
   onReset,
   path,
 }) {
-  // Set just at first. Can't change later
-  const tokenType = React.useMemo(() => getTokenType(outerValue), [])
+  // Debounce changing token type by 500ms
+  const debouncedOuterValue = useDebouncedValue(outerValue, 500)
+  const tokenType = React.useMemo(() => getTokenType(debouncedOuterValue), [debouncedOuterValue])
 
   const valueInput = (
     <ValueInput
       id={`${path}_val`}
+      key={`${path}_val`}
       value={outerValue}
       onUpdate={onUpdate}
       onReset={onReset}
@@ -31,43 +34,41 @@ const TokenValue = React.memo<Props>(function TokenValue({
     />
   )
 
-  switch (tokenType) {
-    case TokenType.Color: {
-      return (
-        <UIWrap>
-          <ColorPicker tokenId={path} currentValue={outerValue} onUpdate={onUpdate} />
+  const tokenAction = (() => {
+    switch (tokenType) {
+      case TokenType.Color: {
+        return <ColorPicker tokenId={path} currentValue={outerValue} onUpdate={onUpdate} />
+      }
 
-          {valueInput}
-        </UIWrap>
-      )
+      // Special Stitches variable reference case
+      case TokenType.StitchesVariable: {
+        return <StitchesReference path={path} value={outerValue} />
+      }
+
+      default:
+        return null
     }
+  })()
 
-    case TokenType.Size:
-    case TokenType.Number:
-    case TokenType.Discrete:
-    case TokenType.Text:
-      return valueInput
+  return (
+    <UIWrap>
+      <UIAction>{tokenAction}</UIAction>
 
-    // Special Stitches variable reference case
-    case TokenType.StitchesVariable: {
-      return (
-        <UIWrap>
-          <StitchesReference path={path} value={outerValue} />
-
-          {valueInput}
-        </UIWrap>
-      )
-    }
-  }
-
-  return null
+      {valueInput}
+    </UIWrap>
+  )
 })
 
 export default TokenValue
 
 const UIWrap = styled('div', {
-  display: 'grid',
-  gap: '$2',
+  display: 'flex',
   alignItems: 'center',
-  gridTemplateColumns: 'max-content 1fr',
+})
+
+const UIAction = styled('div', {
+  flexGrow: 0,
+  flexShrink: 0,
+  flexBasis: '$sizes$control_2xs',
+  mr: '$2',
 })
