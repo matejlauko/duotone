@@ -1,11 +1,12 @@
-import { styled } from '../ui'
 import * as React from 'react'
-import { getTokenType } from '../utils/tokens'
+import { styled } from '../ui'
+import { getTokenType, TokenType } from '../utils/tokens'
 import ColorPicker from './colors/color-picker'
 import ValueInput from './input'
+import StitchesReference from './reference'
 
 type Props = {
-  tokenId: string
+  path: string
   value: string
   onUpdate: (val: string) => void
   onReset: () => void
@@ -15,14 +16,14 @@ const TokenValue = React.memo<Props>(function TokenValue({
   value: outerValue,
   onUpdate,
   onReset,
-  tokenId,
+  path,
 }) {
   // Set just at first. Can't change later
   const tokenType = React.useMemo(() => getTokenType(outerValue), [])
 
   const valueInput = (
     <ValueInput
-      id={`${tokenId}_val`}
+      id={`${path}_val`}
       value={outerValue}
       onUpdate={onUpdate}
       onReset={onReset}
@@ -31,29 +32,32 @@ const TokenValue = React.memo<Props>(function TokenValue({
   )
 
   switch (tokenType) {
-    case 'color': {
+    case TokenType.Color: {
       return (
-        <UIColorValue>
-          <ColorPicker tokenId={tokenId} currentValue={outerValue} onUpdate={onUpdate} />
+        <UIWrap>
+          <ColorPicker tokenId={path} currentValue={outerValue} onUpdate={onUpdate} />
 
           {valueInput}
-        </UIColorValue>
+        </UIWrap>
       )
     }
 
-    case 'size': {
+    case TokenType.Size:
+    case TokenType.Number:
+    case TokenType.Discrete:
+    case TokenType.Text:
       return valueInput
+
+    // Special Stitches variable reference case
+    case TokenType.StitchesVariable: {
+      return (
+        <UIWrap>
+          <StitchesReference path={path} value={outerValue} />
+
+          {valueInput}
+        </UIWrap>
+      )
     }
-
-    case 'number': {
-      return valueInput
-    }
-
-    case 'discrete':
-      return valueInput
-
-    case 'text':
-      return valueInput
   }
 
   return null
@@ -61,7 +65,7 @@ const TokenValue = React.memo<Props>(function TokenValue({
 
 export default TokenValue
 
-const UIColorValue = styled('div', {
+const UIWrap = styled('div', {
   display: 'grid',
   gap: '$2',
   alignItems: 'center',

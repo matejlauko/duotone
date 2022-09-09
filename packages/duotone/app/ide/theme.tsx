@@ -7,6 +7,8 @@ import { filterDeepByKey } from '../utils/object'
 import Search from './search'
 import Tokens from './tokens'
 
+export const THEME_CONTAINER_ID = 'theme-container'
+
 type Props = {
   theme: ThemeT
 }
@@ -26,7 +28,7 @@ const Theme: React.FC<Props> = ({ theme }) => {
 
   return (
     <UIContainer>
-      <UITheme>
+      <Scrollable id={THEME_CONTAINER_ID}>
         <UISearch>
           <Search />
         </UISearch>
@@ -34,7 +36,7 @@ const Theme: React.FC<Props> = ({ theme }) => {
         <UITokens>
           <Tokens tokens={filteredTokens} />
         </UITokens>
-      </UITheme>
+      </Scrollable>
     </UIContainer>
   )
 }
@@ -46,8 +48,6 @@ const UIContainer = styled('div', {
   bg: '$uiBg',
   height: '100%',
 })
-
-const UITheme = styled(Scrollable)
 
 const UITokens = styled('div', {
   fontSize: '$1',

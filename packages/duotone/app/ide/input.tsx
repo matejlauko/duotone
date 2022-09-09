@@ -20,8 +20,8 @@ const ValueInput: React.FC<Props> = ({ id, value, onUpdate, onReset, type }) => 
   }, [value])
 
   const [numVal, unit] = React.useMemo(() => {
-    if (type === 'number') return [value]
-    if (type !== 'size') return []
+    if (type === TokenType.Number) return [value]
+    if (type !== TokenType.Size) return []
 
     return getValueAndUnit(value)
   }, [value])
@@ -42,7 +42,7 @@ const ValueInput: React.FC<Props> = ({ id, value, onUpdate, onReset, type }) => 
       return
     }
 
-    if (type === 'number' || type === 'size') {
+    if (type === TokenType.Number || type === TokenType.Size) {
       let newNumVal = null
 
       if (event.key === 'ArrowUp') {
@@ -54,7 +54,7 @@ const ValueInput: React.FC<Props> = ({ id, value, onUpdate, onReset, type }) => 
       if (newNumVal !== null) {
         event.preventDefault()
 
-        onUpdate(type === 'size' ? `${newNumVal}${unit}` : String(newNumVal))
+        onUpdate(type === TokenType.Size ? `${newNumVal}${unit}` : String(newNumVal))
       }
     }
   }
@@ -65,7 +65,7 @@ const ValueInput: React.FC<Props> = ({ id, value, onUpdate, onReset, type }) => 
       defaultValue={value}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
-      valType={type}
+      valType={type as any}
       ref={inputRef}
     />
   )

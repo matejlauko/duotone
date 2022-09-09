@@ -5,7 +5,7 @@ import { ThemePack, ThemeTokens, TokenValue } from '../shared/types'
 import { currentThemeNameAtom } from './theming-state'
 import { setInPath } from './utils/object'
 
-export type TokenChange = {
+export type Token = {
   path: string
   value: TokenValue
 }
@@ -37,25 +37,13 @@ export const changedTokensInCurrentThemeAtom = atom<ThemeTokens>((get) => {
 /**
  * Set a change to changed tokens - using path and value
  */
-export const addChangedTokenAtom = atom(null, (get, set, { path, value }: TokenChange) => {
+export const addChangedTokenAtom = atom(null, (get, set, { path, value }: Token) => {
   const currThemeName = get(currentThemeNameAtom)
   if (!currThemeName) return
 
   const currChanges = get(changedTokensAtom)
 
   set(changedTokensAtom, setInPath(currChanges, `${currThemeName}.${path}`, value))
-})
-
-/**
- * Set a token changes for current theme
- */
-export const setChangedTokensInCurrentThemeAtom = atom(null, (get, set, _tokens: ThemeTokens) => {
-  const currThemeName = get(currentThemeNameAtom)
-  if (!currThemeName) return
-
-  const currChanges = get(changedTokensAtom)
-
-  set(changedTokensAtom, setInPath(currChanges, currThemeName, _tokens))
 })
 
 /**
@@ -105,3 +93,22 @@ export const resetTokenChangeInCurrentThemeAndPath = atom(null, (get, set, path:
  * Search tokens term
  */
 export const searchTermAtom = atom<string>('')
+
+/**
+ * Highlight a token
+ */
+export const highlightedTokenAtom = atom<Token['path'] | null>(null)
+
+/**
+ * Sets highlighted token.
+ * But allows re-highlighting by first resseting the old value.
+ */
+export const setHighlightedTokenWithResetAtom = atom(null, (get, set, path: string) => {
+  // First reset and have re-render
+  set(highlightedTokenAtom, null)
+
+  // Set new value in next loop
+  setTimeout(() => {
+    set(highlightedTokenAtom, path)
+  }, 1)
+})

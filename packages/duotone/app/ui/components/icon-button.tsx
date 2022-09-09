@@ -18,6 +18,9 @@ export const UIIconButton = styled(BaseButton, {
 
   variants: {
     size: {
+      '2xs': {
+        size: '$control_2xs',
+      },
       sm: {
         size: '$control_sm',
       },
@@ -70,7 +73,17 @@ export const IconButton = React.forwardRef<
 >(function IconButton({ size = defaultVariants.size, children, ...props }, forwardedRef) {
   if (!children || !React.isValidElement(children)) return null
 
-  const iconSize = size === 'xl' ? 'lg' : size
+  const iconSize = (() => {
+    switch (size) {
+      case 'xl':
+        return 'lg'
+      case '2xs':
+        return 'sm'
+      default:
+        return size
+    }
+  })() as 'sm' | 'md' | 'lg'
+
   const iconChild = React.cloneElement(children as React.ReactElement<IconProps>, {
     color: 'blend',
     size: iconSize,
