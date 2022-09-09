@@ -78,8 +78,7 @@ export const lightThemeTokens = {
     controlBgActive: colors.gray2,
     controlBgInactive: colors.gray5,
 
-    editorInputBg: '$uiBg3',
-    editorInputActive: '$uiBg4',
+    editorInputActive: '$uiBg2',
 
     // Icons
 
@@ -257,8 +256,7 @@ export const darkThemeTokens = {
     controlBgActive: colors.grayDark2,
     controlBgInactive: colors.grayDark5,
 
-    editorInputBg: '$uiBg3',
-    editorInputActive: '$uiBg4',
+    editorInputActive: '$uiBg2',
 
     // Icons
 

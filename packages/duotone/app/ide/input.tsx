@@ -65,7 +65,6 @@ const ValueInput: React.FC<Props> = ({ id, value, onUpdate, onReset, type }) => 
       defaultValue={value}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
-      valType={type as any}
       ref={inputRef}
     />
   )
@@ -74,7 +73,6 @@ const ValueInput: React.FC<Props> = ({ id, value, onUpdate, onReset, type }) => 
 export default ValueInput
 
 export const UIEditorInput = styled('input', baseTextInputCss, {
-  bg: '$editorInputBg',
   borderRadius: '$sm',
   fontFamily: '$mono',
   height: '$control_xs',
@@ -92,35 +90,13 @@ export const UIEditorInput = styled('input', baseTextInputCss, {
   outlineStyle: 'solid',
   outlineColor: 'transparent',
 
+  '&:hover': {
+    bg: '$editorInputActive',
+  },
   '&:focus': {
     outlineColor: '$focus',
-  },
-
-  '&:focus, &:hover': {
     bg: '$editorInputActive',
   },
 
-  minWidth: '3ch',
-
-  variants: {
-    valType: {
-      size: {
-        width: '13ch',
-      },
-      color: {
-        width: '100%',
-        maxWidth: 300,
-      },
-      number: {
-        width: '13ch',
-      },
-      discrete: {
-        width: '100%',
-        maxWidth: 300,
-      },
-      text: {
-        width: '100%',
-      },
-    },
-  },
+  width: '100%',
 })
