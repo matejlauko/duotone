@@ -3,6 +3,7 @@ import merge from 'lodash.merge'
 import * as React from 'react'
 import { CreateTheme, Provider as ProviderT, ThemePack, ThemeTokens } from '../shared/types'
 import { generateThemes } from './utils/generate-themes'
+import { generateColorPalette } from './utils/generate-color-palette'
 
 export const CONFIG = __GENERATED_KIT__.config
 
@@ -43,3 +44,7 @@ export const HEAD = _head ?? null
 /* STYLES */
 
 export const PREVIEW_STYLES = _previewStyles ?? {}
+
+/* COLOR PALETTE */
+
+export const COLOR_PALETTE = generateColorPalette(CONFIG)

@@ -17,6 +17,7 @@ export const globalStyles = {
     color: '$text',
     lineHeight: '$body',
     fontFamily: '$body',
+    fontSize: '$base',
     bg: '$bodyBg',
     fontFeatureSettings: 'kern',
     overflowY: 'auto',

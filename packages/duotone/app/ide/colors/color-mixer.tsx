@@ -1,20 +1,19 @@
-import { BaseButton, CSS, Popover, PopoverContent, PopoverTrigger, styled } from '../ui'
 import * as React from 'react'
-import { ColorPicker as ReactColorPrimitive, useColor } from 'react-color-palette'
-import { getColorFormat, setColorFormat } from '../utils/color'
-import { useDebouncedValue, useFirstRender } from '../utils/hooks'
+import { ColorPicker as ColorPickerPrimitive, useColor } from 'react-color-palette'
+import { CSS, styled } from '../../ui'
+import { getColorFormat, setColorFormat } from '../../utils/color'
+import { useDebouncedValue, useFirstRender } from '../../utils/hooks'
 
 type Props = {
-  value: string
+  currentValue: string
   onUpdate: (val: string) => void
-  tokenId?: string
 }
 
-const ColorPicker: React.FC<Props> = ({ onUpdate, value, tokenId }) => {
+const ColorMixer: React.FC<Props> = ({ onUpdate, currentValue }) => {
   const isFirstRender = useFirstRender()
 
-  const colorFormat = React.useMemo(() => getColorFormat(value), [])
-  const [pickerColor, setPickerColor] = useColor('hex', setColorFormat(value, 'hex8'))
+  const colorFormat = React.useMemo(() => getColorFormat(currentValue), [])
+  const [pickerColor, setPickerColor] = useColor('hex', setColorFormat(currentValue, 'hex8'))
   const deferredColor = useDebouncedValue(pickerColor, 50)
 
   React.useEffect(() => {
@@ -24,43 +23,22 @@ const ColorPicker: React.FC<Props> = ({ onUpdate, value, tokenId }) => {
   }, [deferredColor])
 
   return (
-    <Popover>
-      <PopoverTrigger asChild={true}>
-        <UIColorPreview
-          aria-describedby={tokenId && `${tokenId}_label`}
-          style={{ backgroundColor: value }}
-        />
-      </PopoverTrigger>
-
-      <PopoverContent css={{ p: 0 }}>
-        <UIColorPicker>
-          <ReactColorPrimitive
-            width={284}
-            height={160}
-            color={pickerColor}
-            onChange={setPickerColor}
-            alpha={true}
-            hideHSV={true}
-            hideHEX={true}
-            hideRGB={true}
-          />
-        </UIColorPicker>
-      </PopoverContent>
-    </Popover>
+    <UIColorMixer>
+      <ColorPickerPrimitive
+        width={300}
+        height={160}
+        color={pickerColor}
+        onChange={setPickerColor}
+        alpha={true}
+        hideHSV={true}
+        hideHEX={true}
+        hideRGB={true}
+      />
+    </UIColorMixer>
   )
 }
 
-export default ColorPicker
-
-const UIColorPreview = styled(BaseButton, {
-  size: '$control_3xs',
-  borderRadius: '$sm',
-  border: '1px solid $border',
-
-  '&:hover': {
-    boxShadow: '$shadows$outline',
-  },
-})
+export default ColorMixer
 
 const cursorStyles: CSS = {
   $$size: '20px',
@@ -81,13 +59,11 @@ const sliderStyles: CSS = {
   cursor: 'crosshair',
 }
 
-const UIColorPicker = styled('div', {
+const UIColorMixer = styled('div', {
   '.rcp': {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    bg: '$uiBg',
-    borderRadius: '$lg',
   },
 
   '.rcp-body': {
@@ -96,9 +72,9 @@ const UIColorPicker = styled('div', {
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    gap: '$4',
-    py: '$4',
-    px: '$5',
+    gap: '$3',
+    py: '$3',
+    px: '$3',
   },
 
   '.rcp-saturation': {
@@ -106,8 +82,6 @@ const UIColorPicker = styled('div', {
     width: '100%',
     backgroundImage:
       'linear-gradient(transparent, black), linear-gradient(to right, white, transparent)',
-    borderTopLeftRadius: '$lg',
-    borderTopRightRadius: '$lg',
     userSelect: 'none',
     cursor: 'crosshair',
   },

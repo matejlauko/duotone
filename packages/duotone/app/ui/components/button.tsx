@@ -16,11 +16,8 @@ export const baseButtonCss = css(resetButtonCss, {
   position: 'relative',
   display: 'inline-flex',
   alignItems: 'center',
-  px: '$3',
-  height: '$control_md',
-  fontSize: '$base',
   transition:
-    'background-color $appear_fast, color $appear_fast, border-color $appear_fast, box-shadow $appear_fast',
+    'background-color $appear_fast, color $appear_fast, border-color $appear_fast, box-shadow $appear_fast, transform $appear_fast',
 
   '&:focus-visible': {
     outline: '$colors$focus solid 2px',
@@ -35,11 +32,6 @@ export const baseButtonCss = css(resetButtonCss, {
     opacity: 0.7,
   },
 })
-
-const defaultVariants = {
-  variant: 'solid',
-  tone: 'accent',
-} as const
 
 export const BaseButton = styled('button', baseButtonCss)
 
@@ -62,6 +54,18 @@ export const UIButton = styled(BaseButton, {
     tone: {
       accent: {},
       destroy: {},
+    },
+    size: {
+      sm: {
+        fontSize: '$2',
+        height: '$control_sm',
+        px: '$2',
+      },
+      md: {
+        fontSize: '$base',
+        height: '$control_md',
+        px: '$3',
+      },
     },
   },
   compoundVariants: [
@@ -111,7 +115,11 @@ export const UIButton = styled(BaseButton, {
       },
     },
   ],
-  defaultVariants,
+  defaultVariants: {
+    variant: 'solid',
+    tone: 'accent',
+    size: 'md',
+  },
 })
 
 type ButtonProps = {
@@ -121,17 +129,7 @@ type ButtonProps = {
 export const Button = React.forwardRef<
   React.ElementRef<typeof UIButton>,
   React.PropsWithChildren<ButtonProps>
->(function Button(
-  {
-    iconBefore,
-    children,
-    css,
-    variant = defaultVariants.variant,
-    tone = defaultVariants.tone,
-    ...restProps
-  },
-  forwardedRef
-) {
+>(function Button({ iconBefore, children, css, ...restProps }, forwardedRef) {
   let content = <>{children}</>
 
   if (iconBefore) {
@@ -149,7 +147,7 @@ export const Button = React.forwardRef<
   }
 
   return (
-    <UIButton variant={variant} tone={tone} {...restProps} css={css as any} ref={forwardedRef}>
+    <UIButton {...restProps} css={css as any} ref={forwardedRef}>
       {content}
     </UIButton>
   )

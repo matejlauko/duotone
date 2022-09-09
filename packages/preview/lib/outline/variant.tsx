@@ -47,7 +47,7 @@ const UIVariantName = styled('span', {
   all: 'unset',
   fontFamily: '$root$fontFamily',
   lineHeight: '$root$lineHeight',
-  fontSize: '$outline$component_fontSize',
+  fontSize: '$outline$variant_fontSize',
   color: 'inherit',
   fontWeight: 'inherit',
   whiteSpace: 'nowrap',

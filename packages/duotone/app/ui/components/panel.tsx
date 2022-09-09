@@ -4,7 +4,7 @@ export const panelCss = css({
   bg: '$panelBg',
   backdropFilter: 'blur(20px)',
   borderRadius: '$radii$lg',
-  boxShadow: '$shadows$5',
+  boxShadow: '$5',
   borderWidth: 1,
   borderColor: '$line',
 })

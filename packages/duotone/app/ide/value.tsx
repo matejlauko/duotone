@@ -1,7 +1,7 @@
 import { styled } from '../ui'
 import * as React from 'react'
 import { getTokenType } from '../utils/tokens'
-import ColorPicker from './color-picker'
+import ColorPicker from './colors/color-picker'
 import ValueInput from './input'
 
 type Props = {
@@ -34,7 +34,7 @@ const TokenValue = React.memo<Props>(function TokenValue({
     case 'color': {
       return (
         <UIColorValue>
-          <ColorPicker tokenId={tokenId} value={outerValue} onUpdate={onUpdate} />
+          <ColorPicker tokenId={tokenId} currentValue={outerValue} onUpdate={onUpdate} />
 
           {valueInput}
         </UIColorValue>

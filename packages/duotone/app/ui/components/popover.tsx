@@ -27,7 +27,6 @@ const slideLeftAndFade = keyframes({
 
 const UIContent = styled(PopoverPrimitive.Content, {
   borderRadius: '$lg',
-  padding: '$3',
   minWidth: 260,
   backgroundColor: '$uiBg',
   boxShadow: '$4',

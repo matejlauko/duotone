@@ -21,12 +21,16 @@ export type Provider = (
 
 export type CreateTheme<T = {}> = (tokens: ThemeTokens, themeStore: ThemePack<T>) => T | string
 
+export type ColorScale = Record<string, string>
+export type ColorPalette = Record<string, ColorScale | string>
+
 export type KitConfig = {
   themes: ThemesConfig
   name?: string
   logo?: string
   url?: string
   description?: string
+  colorPalette?: ColorPalette
 }
 
 export type CliConfig = {
