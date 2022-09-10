@@ -1,5 +1,11 @@
 # @duotone/preview
 
+## 0.0.4
+
+### Patch Changes
+
+- updates & fixes
+
 ## 0.0.3
 
 ### Patch Changes

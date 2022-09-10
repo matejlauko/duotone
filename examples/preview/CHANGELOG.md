@@ -1,5 +1,13 @@
 # example-preview
 
+## 0.0.4
+
+### Patch Changes
+
+- updates & fixes
+- Updated dependencies
+  - @duotone/preview@0.0.4
+
 ## 0.0.3
 
 ### Patch Changes
