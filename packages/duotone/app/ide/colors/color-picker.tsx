@@ -1,5 +1,14 @@
 import * as React from 'react'
-import { BaseButton, Button, Popover, PopoverContent, PopoverTrigger, styled, Text } from '../../ui'
+import {
+  BaseButton,
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  styled,
+  Text,
+  Tooltip,
+} from '../../ui'
 import ColorMixer from './color-mixer'
 import ColorPalette from './color-palette'
 import { COLOR_PALETTE } from '../../config'
@@ -19,12 +28,14 @@ const ColorPicker: React.FC<Props> = ({ onUpdate, currentValue, tokenId }) => {
 
   return (
     <Popover>
-      <PopoverTrigger asChild={true}>
-        <UIColorPreview
-          aria-describedby={tokenId && `${tokenId}_label`}
-          style={{ backgroundColor: currentValue }}
-        />
-      </PopoverTrigger>
+      <Tooltip content={currentValue}>
+        <PopoverTrigger asChild={true}>
+          <UIColorPreview
+            aria-describedby={tokenId && `${tokenId}_label`}
+            style={{ backgroundColor: currentValue }}
+          />
+        </PopoverTrigger>
+      </Tooltip>
 
       <PopoverContent css={{ width: '300px' }}>
         <UITop>

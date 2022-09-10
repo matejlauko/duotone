@@ -41,6 +41,7 @@ const UITrigger = styled(TabsPrimitive.Trigger, baseButtonCss, {
 const UIContent = styled(TabsPrimitive.Content, {
   flexGrow: 1,
   outline: 'none',
+  overflow: 'hidden',
 })
 
 // Exports

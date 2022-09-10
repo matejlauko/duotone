@@ -49,6 +49,7 @@ export const UIButton = styled(BaseButton, {
         color: '$text',
         borderWidth: 2,
         borderColor: 'transparent',
+        bg: '$ghostBg',
       },
     },
     tone: {
@@ -88,20 +89,6 @@ export const UIButton = styled(BaseButton, {
     // Ghost
     {
       variant: 'ghost',
-      tone: 'destroy',
-      css: {
-        '&:hover:not(:disabled)': {
-          bg: '$ghostDestroyBgHover',
-          borderColor: '$borderDestroy',
-          color: '$ghostDestroyTextHover',
-        },
-        '&:active:not(:disabled), &[data-state="open"]': {
-          bg: '$ghostDestroyBgActive',
-        },
-      },
-    },
-    {
-      variant: 'ghost',
       tone: 'accent',
       css: {
         '&:hover:not(:disabled)': {
@@ -111,6 +98,20 @@ export const UIButton = styled(BaseButton, {
         },
         '&:active:not(:disabled), &[data-state="open"]': {
           bg: '$ghostAccentBgActive',
+        },
+      },
+    },
+    {
+      variant: 'ghost',
+      tone: 'destroy',
+      css: {
+        '&:hover:not(:disabled)': {
+          bg: '$ghostDestroyBgHover',
+          borderColor: '$borderDestroy',
+          color: '$ghostDestroyTextHover',
+        },
+        '&:active:not(:disabled), &[data-state="open"]': {
+          bg: '$ghostDestroyBgActive',
         },
       },
     },

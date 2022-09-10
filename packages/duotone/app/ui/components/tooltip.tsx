@@ -50,6 +50,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<TooltipProps>> = ({
   sideOffset = 2,
   align = 'center',
   alignOffset,
+  delayDuration = 300,
   hasArrow = true,
   ...rootProps
 }) => {
@@ -58,7 +59,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<TooltipProps>> = ({
   }
 
   return (
-    <TooltipRoot {...rootProps}>
+    <TooltipRoot delayDuration={delayDuration} {...rootProps}>
       <TooltipTrigger asChild>{children}</TooltipTrigger>
 
       <TooltipPortal>

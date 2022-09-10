@@ -14,7 +14,7 @@ const UISwitch = styled(SwitchPrimitive.Root, {
   cursor: 'pointer',
 
   '&:focus-visible': { outline: '$colors$focus solid 2px' },
-  '&[data-state="checked"]': { backgroundColor: '$solidAccentBg' },
+  '&[data-state="checked"]': { bg: '$solidAccentBg' },
 })
 
 const UIThumb = styled(SwitchPrimitive.Thumb, {
@@ -24,7 +24,7 @@ const UIThumb = styled(SwitchPrimitive.Thumb, {
   borderRadius: '$round',
   transition: 'transform 100ms',
   size: '$$size',
-  backgroundColor: '$controlBg',
+  bg: '$controlFg',
   boxShadow: '$3',
   transform: 'translateX(2px)',
   willChange: 'transform',

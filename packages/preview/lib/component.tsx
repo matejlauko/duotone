@@ -110,7 +110,7 @@ const UIVariantHeading = styled('h3', {
   fontSize: '$variant$heading_fontSize',
   fontWeight: '$variant$heading_fontWeight',
   color: '$variant$heading_color',
-  marginBottom: '8px',
+  marginBottom: '4px',
 })
 
 const UIPanel = styled('div', {

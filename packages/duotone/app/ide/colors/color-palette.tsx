@@ -21,7 +21,7 @@ const ColorPalette: React.FC<Props> = ({ currentValue, onUpdate }) => {
           {COLOR_PALETTE.colors && (
             <UIColorGrid role="listitem">
               {Object.entries(COLOR_PALETTE.colors).map(([colKey, colVal]) => (
-                <Tooltip content={colVal} delayDuration={200} key={colKey}>
+                <Tooltip content={colKey} delayDuration={200} key={colKey}>
                   <UIColor
                     style={{ backgroundColor: colVal }}
                     selected={colVal === currentValue}

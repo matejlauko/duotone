@@ -47,12 +47,13 @@ const UIContainer = styled('div', {
   position: 'relative',
   bg: '$uiBg',
   height: '100%',
+  overflow: 'hidden',
 })
 
 const UITokens = styled('div', {
   fontSize: '$1',
   pt: '$4',
-  pb: '$8',
+  pb: '$6',
   fontFamily: '$mono',
 })
 

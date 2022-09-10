@@ -7,7 +7,7 @@ const DEFAULT_PREVIEW_STYLES: Required<StylesConfig> & {
   renderPanel: Required<StylesConfig['renderPanel']>
 } = {
   background: '#f8f9fa',
-  fontSize: '1rem',
+  fontSize: '0.875rem',
   fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
   fontColor: '#151718',
   primaryColor: '#3e63dd',
@@ -47,7 +47,7 @@ export const generateThemeFromPreviewStyles = (previewStylesConfig?: StylesConfi
       heading_fontSize: `${previewFontSizeVal}${previewFontSizeUnit}`,
       heading_color: styles.fontColor,
       heading_fontWeight: 400,
-      gap: '2rem',
+      gap: '1.5rem',
     },
 
     renderPanel: {
@@ -55,7 +55,7 @@ export const generateThemeFromPreviewStyles = (previewStylesConfig?: StylesConfi
       border: `1px solid ${darken(0.1, styles.renderPanel.background)}`,
       borderRadius: '6px',
 
-      option_fontSize: `${previewFontSizeVal * 0.95}${previewFontSizeUnit}`,
+      option_fontSize: `${previewFontSizeVal * 0.9}${previewFontSizeUnit}`,
       option_color:
         previewStylesConfig?.renderPanel?.fontColor ??
         previewStylesConfig?.fontColor ??

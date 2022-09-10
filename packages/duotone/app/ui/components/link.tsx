@@ -10,7 +10,7 @@ export const linkVariants = {
       fontWeight: '$medium',
 
       '&:hover': {
-        color: '$textAccent2',
+        color: '$textAccentHover',
       },
     },
   },

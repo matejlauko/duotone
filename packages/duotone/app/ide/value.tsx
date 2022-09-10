@@ -1,6 +1,6 @@
 import * as React from 'react'
+import { COLOR_PALETTE } from '../config'
 import { styled } from '../ui'
-import { useDebouncedValue } from '../utils/hooks'
 import { getTokenType, TokenType } from '../utils/tokens'
 import ColorPicker from './colors/color-picker'
 import ValueInput from './input'
@@ -19,24 +19,25 @@ const TokenValue = React.memo<Props>(function TokenValue({
   onReset,
   path,
 }) {
-  // Debounce changing token type by 500ms
-  const debouncedOuterValue = useDebouncedValue(outerValue, 500)
-  const tokenType = React.useMemo(() => getTokenType(debouncedOuterValue), [debouncedOuterValue])
+  // Token type can't change at this moment
+  const tokenType = React.useMemo(() => getTokenType(outerValue), [])
 
-  const valueInput = (
-    <ValueInput
-      id={`${path}_val`}
-      key={`${path}_val`}
-      value={outerValue}
-      onUpdate={onUpdate}
-      onReset={onReset}
-      type={tokenType}
-    />
-  )
+  let _displayValue = outerValue
+  let _onUpdate = onUpdate
 
   const tokenAction = (() => {
     switch (tokenType) {
       case TokenType.Color: {
+        if (COLOR_PALETTE) {
+          // Change dispalyed value for the color palette key
+          _displayValue = COLOR_PALETTE.valKeyMap.get(outerValue) || outerValue
+
+          // Make it possible to change color palette key directly in input
+          _onUpdate = (_val: string) => {
+            onUpdate(COLOR_PALETTE!.keyValMap.get(_val) || _val)
+          }
+        }
+
         return <ColorPicker tokenId={path} currentValue={outerValue} onUpdate={onUpdate} />
       }
 
@@ -49,6 +50,17 @@ const TokenValue = React.memo<Props>(function TokenValue({
         return null
     }
   })()
+
+  const valueInput = (
+    <ValueInput
+      id={`${path}_val`}
+      key={`${path}_val`}
+      value={_displayValue}
+      onUpdate={_onUpdate}
+      onReset={onReset}
+      type={tokenType}
+    />
+  )
 
   return (
     <UIWrap>

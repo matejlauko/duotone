@@ -88,7 +88,7 @@ export const HCenter = styled('div', { display: 'flex', justifyContent: 'center'
 
 export const Scrollable = styled('div', {
   overflow: 'auto',
-  height: '100%',
+  maxHeight: '100%',
 
   '&::-webkit-scrollbar': {
     width: '15px',

@@ -23,7 +23,7 @@ const Ide: React.FC = () => {
       </TabsList>
 
       {THEMES.map((theme) => (
-        <TabsContent value={theme.name} key={theme.name} css={{ height: '100%' }}>
+        <TabsContent value={theme.name} key={theme.name}>
           <Theme theme={theme} />
         </TabsContent>
       ))}
