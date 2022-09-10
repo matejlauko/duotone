@@ -1,1 +1,1 @@
-export { headerThemeTokens, mainThemeTokens } from '../../packages/duotone/app/ui/tokens'
+export { lightThemeTokens, darkThemeTokens } from '../../packages/duotone/app/ui/tokens'

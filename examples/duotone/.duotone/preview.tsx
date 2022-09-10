@@ -47,7 +47,7 @@ const components: ComponentsConfig = {
         prop: 'variant',
         options: ['solid', 'ghost'],
       },
-      ['Solid Tone']: {
+      ['Solid Tones']: {
         prop: 'tone',
         options: [
           {
@@ -58,17 +58,9 @@ const components: ComponentsConfig = {
               </Button>
             ),
           },
-          {
-            name: 'destroy',
-            render: () => (
-              <Button variant="solid" tone="destroy">
-                Button
-              </Button>
-            ),
-          },
         ],
       },
-      ['Ghost Tone']: {
+      ['Ghost Tones']: {
         prop: 'tone',
         options: [
           {
@@ -88,6 +80,10 @@ const components: ComponentsConfig = {
             ),
           },
         ],
+      },
+      Size: {
+        prop: 'size',
+        options: ['sm', 'md'],
       },
     },
   },
@@ -113,20 +109,6 @@ const components: ComponentsConfig = {
   },
   Switch: {
     render: (props) => <Switch {...props} />,
-  },
-  Accordion: {
-    render: (props) => (
-      <Accordion type="multiple">
-        <AccordionItem value="1">
-          <AccordionTrigger>Trigger</AccordionTrigger>
-          <AccordionContent>Content</AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="2">
-          <AccordionTrigger>Trigger 2</AccordionTrigger>
-          <AccordionContent>Content 2</AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    ),
   },
   Dialog: {
     render: () => (
@@ -181,15 +163,19 @@ const components: ComponentsConfig = {
   },
   Tabs: {
     render: () => (
-      <Tabs>
-        <TabsList aria-label="Unstyled tabs example">
+      <Tabs value="one">
+        <TabsList aria-label="Tabs example">
           <TabsTrigger value="one">One</TabsTrigger>
           <TabsTrigger value="two">Two</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="one">First content</TabsContent>
+        <TabsContent value="one" style={{ padding: '8px' }}>
+          First content
+        </TabsContent>
 
-        <TabsContent value="two">Second content</TabsContent>
+        <TabsContent value="two" style={{ padding: '8px' }}>
+          Second content
+        </TabsContent>
       </Tabs>
     ),
   },

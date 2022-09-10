@@ -12,7 +12,6 @@ export const lightThemeTokens = {
     uiBg3: colors.gray2,
     uiBg4: colors.gray3,
     uiBg5: colors.gray4,
-    uiBg6: colors.gray5,
 
     bodyBg: '$uiBg4',
 
@@ -30,6 +29,7 @@ export const lightThemeTokens = {
     textPlaceholder: colors.gray9,
 
     textAccent: colors.accent11,
+    textAccentHover: colors.accent12,
     textDestroy: colors.red11,
 
     // Lines & Borders
@@ -55,7 +55,6 @@ export const lightThemeTokens = {
     solidAccentBgHover: colors.accent10,
     solidAccentBgActive: colors.accent11,
 
-    outlineBorder: colors.gray7,
     outlineBgHover: colors.grayA3,
     outlineBgActive: colors.grayA4,
 
@@ -77,6 +76,8 @@ export const lightThemeTokens = {
     controlBgHover: colors.gray1,
     controlBgActive: colors.gray2,
     controlBgInactive: colors.gray5,
+
+    controlFg: '$loContrast',
 
     editorInputActive: '$uiBg2',
 
@@ -191,8 +192,12 @@ export const darkThemeTokens = {
     // Backgrounds
 
     uiBg: colors.grayDark2,
+    uiBg2: colors.grayDark3,
+    uiBg3: colors.grayDark4,
+    uiBg4: colors.grayDark3,
+    uiBg5: colors.grayDark4,
 
-    bodyBg: colors.grayDark1,
+    bodyBg: colors.grayDark2,
 
     panelBg: colors.grayDarkA2,
     overlayBg: colors.grayDarkA11,
@@ -205,9 +210,10 @@ export const darkThemeTokens = {
     text: '$hiContrast',
     textMuted: colors.grayDark11,
     textContrast: '$loContrast',
-    textPlaceholder: colors.grayDark9,
+    textPlaceholder: colors.grayDark11,
 
     textAccent: colors.accentDark11,
+    textAccentHover: colors.accentDark12,
     textDestroy: colors.redDark11,
 
     // Lines & Borders
@@ -230,23 +236,22 @@ export const darkThemeTokens = {
     solidText: '$hiContrast',
 
     solidAccentBg: colors.accentDark9,
-    solidAccentBgHover: colors.accentDark10,
-    solidAccentBgActive: colors.accentDark11,
+    solidAccentBgHover: colors.accentDark8,
+    solidAccentBgActive: colors.accentDark7,
 
-    outlineBorder: colors.grayDark7,
-    outlineBgHover: colors.grayDarkA3,
-    outlineBgActive: colors.grayDarkA4,
+    outlineBgHover: colors.grayDarkA4,
+    outlineBgActive: colors.grayDarkA5,
 
     ghostBg: 'transparent',
     ghostBgHover: colors.grayDarkA3,
     ghostBgActive: colors.grayDarkA4,
 
-    ghostAccentBgHover: colors.accentDark3,
-    ghostAccentBgActive: colors.accentDark4,
+    ghostAccentBgHover: colors.accentDark5,
+    ghostAccentBgActive: colors.accentDark6,
     ghostAccentTextHover: '$text',
 
-    ghostDestroyBgHover: colors.redDark3,
-    ghostDestroyBgActive: colors.redDark4,
+    ghostDestroyBgHover: colors.redDark5,
+    ghostDestroyBgActive: colors.redDark6,
     ghostDestroyTextHover: '$text',
 
     // Controls
@@ -254,7 +259,9 @@ export const darkThemeTokens = {
     controlBg: '$loContrast',
     controlBgHover: colors.grayDark1,
     controlBgActive: colors.grayDark2,
-    controlBgInactive: colors.grayDark5,
+    controlBgInactive: colors.grayDark7,
+
+    controlFg: '$hiContrast',
 
     editorInputActive: '$uiBg2',
 
